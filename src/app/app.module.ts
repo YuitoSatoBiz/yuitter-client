@@ -7,6 +7,7 @@ import 'hammerjs';
 import {TimeLineComponent} from './time-line/time-line.component';
 import {HeaderComponent} from './header/header.component';
 import {AppRoutingModule} from './app-routing/app-routing.module';
+import { TweetListComponent } from './tweet-list/tweet-list.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
   declarations: [
     AppComponent,
     TimeLineComponent,
-    HeaderComponent
+    HeaderComponent,
+    TweetListComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

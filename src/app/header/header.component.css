@@ -3,6 +3,5 @@ md-toolbar {
 }
 .container {
   margin: 0 auto;
-  min-width: 1190px;
-  z-index: 999;
+  width: 1190px;
 }
