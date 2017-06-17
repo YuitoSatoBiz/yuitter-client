@@ -10,6 +10,7 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 import {TweetListComponent} from './components/tweet-list/tweet-list.component';
 import {TweetCardComponent} from './components/tweet-card/tweet-card.component';
 import { HttpModule } from '@angular/http';
+import {TweetService} from './services/tweet-service/tweet.service';
 
 @NgModule({
   imports: [
@@ -34,7 +35,7 @@ import { HttpModule } from '@angular/http';
     TweetListComponent,
     TweetCardComponent
   ],
-  providers: [],
+  providers: [TweetService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

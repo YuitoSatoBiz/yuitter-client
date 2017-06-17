@@ -6,5 +6,5 @@ export class Tweet {
   tweetText: String;
   registerDatetime: DateTimeFormat;
   versionNo: Number;
-  accounts: Account[]
+  // accounts: Account[]
 }
