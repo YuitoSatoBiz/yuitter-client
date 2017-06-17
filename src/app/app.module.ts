@@ -4,10 +4,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCheckboxModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import 'hammerjs';
+import { TimeLineComponent } from './time-line/time-line.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TimeLineComponent
   ],
   imports: [
     BrowserModule,
