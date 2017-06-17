@@ -4,11 +4,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCardModule, MdCheckboxModule, MdIconModule, MdMenuModule, MdToolbarModule} from '@angular/material';
 import {AppComponent} from './app.component';
 import 'hammerjs';
-import {TimeLineComponent} from './time-line/time-line.component';
-import {HeaderComponent} from './header/header.component';
+import {TimeLineComponent} from './components/time-line/time-line.component';
+import {HeaderComponent} from './components/header/header.component';
 import {AppRoutingModule} from './app-routing/app-routing.module';
-import { TweetListComponent } from './tweet-list/tweet-list.component';
-import { TweetCardComponent } from './tweet-card/tweet-card.component';
+import { TweetListComponent } from './components/tweet-list/tweet-list.component';
+import { TweetCardComponent } from './components/tweet-card/tweet-card.component';
 
 @NgModule({
   imports: [
