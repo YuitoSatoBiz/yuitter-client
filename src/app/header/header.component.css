@@ -1,4 +1,8 @@
+md-toolbar {
+  position: fixed;
+}
 .container {
   margin: 0 auto;
   min-width: 1190px;
+  z-index: 999;
 }
