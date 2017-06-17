@@ -5,11 +5,13 @@ import {MdButtonModule, MdCheckboxModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import 'hammerjs';
 import { TimeLineComponent } from './time-line/time-line.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimeLineComponent
+    TimeLineComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
