@@ -1,6 +1,6 @@
 export class Account {
-  accountId: Number;
-  accountName: String;
-  avatar: String;
-  backgroundImage: String;
+  accountId: number;
+  accountName: string;
+  avatar: string;
+  backgroundImage: string;
 }
