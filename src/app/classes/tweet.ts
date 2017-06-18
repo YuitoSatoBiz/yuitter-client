@@ -2,9 +2,9 @@ import {Account} from './account'
 import DateTimeFormat = Intl.DateTimeFormat;
 
 export class Tweet {
-  tweetId: Number;
-  tweetText: String;
+  tweetId: number;
+  tweetText: string;
   registerDatetime: DateTimeFormat;
-  versionNo: Number;
-  // accounts: Account[]
+  versionNo: number;
+  accounts: Account[];
 }
