@@ -9,8 +9,9 @@ import {HeaderComponent} from './components/header/header.component';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import {TweetListComponent} from './components/tweet-list/tweet-list.component';
 import {TweetCardComponent} from './components/tweet-card/tweet-card.component';
-import { HttpModule } from '@angular/http';
+import {HttpModule} from '@angular/http';
 import {TweetService} from './services/tweet-service/tweet.service';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {TweetService} from './services/tweet-service/tweet.service';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpModule,
+    FormsModule,
     MdButtonModule,
     MdCheckboxModule,
     MdButtonModule,
