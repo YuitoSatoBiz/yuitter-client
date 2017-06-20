@@ -1,0 +1,15 @@
+.container {
+  margin: 0 auto;
+  width: 837px;
+  height: 236px;
+  background: white;
+}
+
+.content {
+  margin: 0 auto;
+  width: 585px ;
+}
+
+.sigin-header {
+  padding: 30px 0 20px 0;
+}
