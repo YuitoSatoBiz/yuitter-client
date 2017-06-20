@@ -11,18 +11,18 @@ export class TweetListComponent implements OnInit {
 
   tweets: Tweet[];
 
+  static handleError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
+  }
+
   constructor(private tweetService: TweetService) {
   }
 
   getTweets(): void {
     this.tweetService.getTweets().then(tweets =>
       this.tweets = tweets
-    ).catch(this.handleError);
-  }
-
-  handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+    ).catch(TweetListComponent.handleError);
   }
 
   ngOnInit() {
