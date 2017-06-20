@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 
+*.zip
+
 # dependencies
 /node_modules
 
@@ -40,3 +42,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# testImage
+/src/assets/public
