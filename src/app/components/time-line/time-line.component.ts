@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Account} from '../../classes/account'
+import {MemberService} from '../../services/member-service/member.service';
+import {Member} from 'app/classes/member';
 
 @Component({
   selector: 'app-time-line',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimeLineComponent implements OnInit {
 
-  constructor() { }
+  currentMember: Member;
+  accounts: Account[];
+  currentAccount: Account;
 
-  ngOnInit() {
+  constructor(private memberService: MemberService) {
   }
 
+  ngOnInit() {
+    this.getCurrentMember();
+  }
+
+  getCurrentMember(): void {
+    this.memberService.findCurrent()
+      .then(member => {
+        this.currentMember = member;
+        this.accounts = this.currentMember.accounts;
+        console.log(member.accounts);
+      });
+  }
 }

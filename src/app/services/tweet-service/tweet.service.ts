@@ -6,7 +6,7 @@ import {Tweet} from '../../classes/tweet';
 @Injectable()
 export class TweetService {
 
-  private tweetsUrl = 'http://localhost:9000/api/tweets/12';
+  private tweetsUrl = 'http://localhost:9000/api/tweets/';
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -16,8 +16,8 @@ export class TweetService {
   constructor(private http: Http) {
   }
 
-  getTweets(): Promise<Tweet[]> {
-    return this.http.get(this.tweetsUrl, {withCredentials: true})
+  getTweets(accountId: number): Promise<Tweet[]> {
+    return this.http.get(this.tweetsUrl + accountId, {withCredentials: true})
       .toPromise()
       .then(response =>
         response.json() as Tweet[]

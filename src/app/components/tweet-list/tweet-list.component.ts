@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TweetService} from '../../services/tweet-service/tweet.service';
 import {Tweet} from '../../classes/tweet';
+import {Account} from '../../classes/account';
 
 @Component({
   selector: 'app-tweet-list',
@@ -9,6 +10,7 @@ import {Tweet} from '../../classes/tweet';
 })
 export class TweetListComponent implements OnInit {
 
+  @Input() account: Account;
   tweets: Tweet[];
 
   static handleError(error: any): Promise<any> {
@@ -20,7 +22,7 @@ export class TweetListComponent implements OnInit {
   }
 
   getTweets(): void {
-    this.tweetService.getTweets().then(tweets =>
+    this.tweetService.getTweets(this.account.accountId).then(tweets =>
       this.tweets = tweets
     ).catch(TweetListComponent.handleError);
   }

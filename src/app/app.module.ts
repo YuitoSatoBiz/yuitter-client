@@ -25,7 +25,7 @@ import {FormsModule} from '@angular/forms';
 import {SignInFormComponent} from './components/sign-in-form/sign-in-form.component';
 import {SessionService} from './services/session-service/session.service';
 import {SignUpFormComponent} from './components/sign-up-form/sign-up-form.component'
-import {MemberService} from './services/member-service/member-service.service';
+import {MemberService} from './services/member-service/member.service';
 
 @NgModule({
   imports: [

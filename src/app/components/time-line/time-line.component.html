@@ -1,13 +1,9 @@
 <div class="container">
-  <div class="time-line">
-    <md-tab-group>
-      <md-tab label="One">
-        <app-tweet-list></app-tweet-list>
-      </md-tab>
-      <md-tab label="two">
-        <app-tweet-list></app-tweet-list>
+  <div *ngIf="currentMember" class="time-line">
+    <md-tab-group >
+      <md-tab *ngFor="let account of accounts" label={{account.accountName}}>
+        <app-tweet-list [account]="account"></app-tweet-list>
       </md-tab>
     </md-tab-group>
-
   </div>
 </div>

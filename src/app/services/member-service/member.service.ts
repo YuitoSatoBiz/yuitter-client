@@ -3,6 +3,7 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Router} from '@angular/router';
 import {SessionService} from '../session-service/session.service';
+import {Member} from '../../classes/member';
 
 @Injectable()
 export class MemberService {
@@ -11,6 +12,7 @@ export class MemberService {
     'Content-Type': 'application/json',
   });
   private membersUrl = 'http://localhost:9000/api/members';
+  private currentMemberUrl = 'http://localhost:9000/api/members/current';
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -33,6 +35,15 @@ export class MemberService {
       .toPromise()
       .then(response =>
         this.sessionService.create(emailAddress, password)
+      ).catch(MemberService.handleError)
+  }
+
+  findCurrent(): Promise<Member> {
+    return this.http
+      .get(this.currentMemberUrl, {withCredentials: true})
+      .toPromise()
+      .then(response =>
+        response.json() as Member
       ).catch(MemberService.handleError)
   }
 }
