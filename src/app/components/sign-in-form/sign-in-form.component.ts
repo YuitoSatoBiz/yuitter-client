@@ -8,6 +8,8 @@ import {SessionService} from '../../services/session-service/session.service'
 })
 export class SignInFormComponent implements OnInit {
 
+  error: String;
+
   constructor(private sessionService: SessionService) {
   }
 
@@ -15,8 +17,15 @@ export class SignInFormComponent implements OnInit {
     this.sessionService.create(emailAddress, password)
       .then(json => {
         return null
-      });
+      })
+      .catch(e => this.handleError(e));
   }
+
+  private handleError(error: any): Promise<any> {
+    this.error = JSON.parse(error._body)['error'];
+    return Promise.reject(error.message || error);
+  }
+
 
   ngOnInit() {
   }

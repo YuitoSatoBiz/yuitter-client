@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class SessionService {
@@ -15,7 +16,7 @@ export class SessionService {
     return Promise.reject(error.message || error);
   }
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private router: Router) {
   }
 
   create(emailAddress: String, password: String): Promise<void> {
@@ -25,8 +26,8 @@ export class SessionService {
         { headers: this.headers, withCredentials: true }
       )
       .toPromise()
-      .then(response =>
-        console.log(response.json()))
-      .catch(SessionService.handleError)
+      .then(response => {
+        this.router.navigate(['/time-line']);
+      }).catch(SessionService.handleError)
   }
 }

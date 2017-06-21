@@ -3,6 +3,11 @@
     <md-card-title class="sigin-header">
       Yuitterにログイン
     </md-card-title>
+    <md-list *ngIf="error">
+      <p style="color: red;">
+        {{error}}
+      </p>
+    </md-list>
     <md-list>
       <div>
         <md-list-item>
@@ -14,7 +19,7 @@
       <div>
         <md-list-item>
           <md-input-container>
-            <input mdInput placeholder="Password" #password/>
+            <input mdInput placeholder="Password" #password type="password"/>
           </md-input-container>
         </md-list-item>
       </div>
