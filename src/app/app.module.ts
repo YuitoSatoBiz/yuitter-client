@@ -2,10 +2,18 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MdButtonModule, MdCardModule, MdCheckboxModule, MdIconModule, MdMenuModule, MdToolbarModule, MdInputModule, MdChipsModule
+  MdButtonModule,
+  MdCardModule,
+  MdCheckboxModule,
+  MdIconModule,
+  MdMenuModule,
+  MdToolbarModule,
+  MdInputModule,
+  MdChipsModule
 } from '@angular/material';
 import {AppComponent} from './app.component';
 import 'hammerjs';
+import {CookieService} from 'angular2-cookie/services/cookies.service';
 import {TimeLineComponent} from './components/time-line/time-line.component';
 import {HeaderComponent} from './components/header/header.component';
 import {AppRoutingModule} from './app-routing/app-routing.module';
@@ -46,7 +54,8 @@ import {SessionService} from './services/session-service/session.service'
   ],
   providers: [
     TweetService,
-    SessionService
+    SessionService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
