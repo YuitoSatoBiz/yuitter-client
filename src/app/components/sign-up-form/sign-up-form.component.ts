@@ -16,9 +16,7 @@ export class SignUpFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  signUp(accountName: String, emailAddress: String, password: String): void {
-    console.log(accountName);
-    console.log(emailAddress);
+  signUp(accountName: String, emailAddress: String, password: String, avatar: String, backgroundImage: String): void {
     this.memberService.create(accountName, emailAddress, password)
       .then(() => null)
       .catch(e => this.handleError(e))
