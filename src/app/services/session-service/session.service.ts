@@ -26,8 +26,8 @@ export class SessionService {
         { headers: this.headers, withCredentials: true }
       )
       .toPromise()
-      .then(response => {
-        this.router.navigate(['/time-line']);
-      }).catch(SessionService.handleError)
+      .then(response =>
+        this.router.navigate(['/time-line'])
+      ).catch(SessionService.handleError)
   }
 }

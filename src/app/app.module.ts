@@ -22,7 +22,9 @@ import {HttpModule} from '@angular/http';
 import {TweetService} from './services/tweet-service/tweet.service';
 import {FormsModule} from '@angular/forms';
 import {SignInFormComponent} from './components/sign-in-form/sign-in-form.component';
-import {SessionService} from './services/session-service/session.service'
+import {SessionService} from './services/session-service/session.service';
+import {SignUpFormComponent} from './components/sign-up-form/sign-up-form.component'
+import {MemberService} from './services/member-service/member-service.service';
 
 @NgModule({
   imports: [
@@ -49,11 +51,13 @@ import {SessionService} from './services/session-service/session.service'
     HeaderComponent,
     TweetListComponent,
     TweetCardComponent,
-    SignInFormComponent
+    SignInFormComponent,
+    SignUpFormComponent
   ],
   providers: [
     TweetService,
-    SessionService
+    SessionService,
+    MemberService
   ],
   bootstrap: [AppComponent]
 })

@@ -15,9 +15,7 @@ export class SignInFormComponent implements OnInit {
 
   signIn(emailAddress: String, password: String): void {
     this.sessionService.create(emailAddress, password)
-      .then(json => {
-        return null
-      })
+      .then(() => null)
       .catch(e => this.handleError(e));
   }
 

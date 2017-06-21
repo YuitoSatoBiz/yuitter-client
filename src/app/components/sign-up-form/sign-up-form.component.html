@@ -1,7 +1,7 @@
 <md-card class="container">
   <div class="content">
     <md-card-title class="sigin-header">
-      Yuitterにログイン
+      Yuitterを使ってみよう！
     </md-card-title>
     <md-list *ngIf="error">
       <p style="color: red;">
@@ -9,6 +9,13 @@
       </p>
     </md-list>
     <md-list>
+      <div>
+        <md-list-item>
+          <md-input-container>
+            <input mdInput placeholder="Nickname" #accountName/>
+          </md-input-container>
+        </md-list-item>
+      </div>
       <div>
         <md-list-item>
           <md-input-container>
@@ -24,10 +31,10 @@
         </md-list-item>
       </div>
       <md-list-item>
-        <button (click)="signIn(emailAddress.value, password.value)"md-raised-button color="primary">
-          サインイン
+        <button (click)="signUp(accountName.value, emailAddress.value, password.value)"md-raised-button color="primary">
+          サインアップ
         </button>
-        <a routerLink="/sign-up">or 新規登録</a>
+        <a routerLink="/sign-in">or サインイン</a>
       </md-list-item>
     </md-list>
   </div>
