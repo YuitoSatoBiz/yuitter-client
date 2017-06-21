@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Tweet} from '../../classes/tweet';
 
@@ -17,7 +17,7 @@ export class TweetService {
   }
 
   getTweets(): Promise<Tweet[]> {
-    return this.http.get(this.tweetsUrl)
+    return this.http.get(this.tweetsUrl, {withCredentials: true})
       .toPromise()
       .then(response =>
         response.json() as Tweet[]

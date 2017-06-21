@@ -1,0 +1,62 @@
+<md-card class="container">
+  <div class="content">
+    <md-card-title class="sigin-header">
+      Yuitterを使ってみよう！
+    </md-card-title>
+    <md-list *ngIf="error">
+      <p style="color: red;">
+        {{error}}
+      </p>
+    </md-list>
+    <md-list>
+      <div>
+        <md-list-item>
+          <md-input-container>
+            <input mdInput placeholder="Nickname" #accountName/>
+          </md-input-container>
+        </md-list-item>
+      </div>
+      <div>
+        <md-list-item>
+          <md-input-container>
+            <input mdInput placeholder="Email Address" #emailAddress/>
+          </md-input-container>
+        </md-list-item>
+      </div>
+      <div>
+        <md-list-item>
+          <md-input-container>
+            <input mdInput placeholder="Password" #password type="password"/>
+          </md-input-container>
+        </md-list-item>
+      </div>
+      <div class="image-input">
+        <md-list-item>
+          <label
+            class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">file_upload</i>
+            <input type="file" style="display: none;" #avatar/>
+          </label>
+          <span>プロフィール画像</span>
+        </md-list-item>
+      </div>
+      <div class="image-input">
+      <md-list-item>
+          <label
+            class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">file_upload</i>
+            <input type="file" style="display: none;" #backgroundImage/>
+          </label>
+          <span>背景画像</span>
+        </md-list-item>
+      </div>
+      <md-list-item>
+        <button (click)="signUp(accountName.value, emailAddress.value, password.value, avatar.value, backgroundImage.value)" md-raised-button
+                color="primary">
+          サインアップ
+        </button>
+        <a routerLink="/sign-in">or サインイン</a>
+      </md-list-item>
+    </md-list>
+  </div>
+</md-card>
