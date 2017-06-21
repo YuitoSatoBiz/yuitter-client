@@ -13,6 +13,9 @@ export class SignInFormComponent implements OnInit {
   constructor(private sessionService: SessionService) {
   }
 
+  ngOnInit() {
+  }
+
   signIn(emailAddress: String, password: String): void {
     this.sessionService.create(emailAddress, password)
       .then(() => null)
@@ -23,9 +26,4 @@ export class SignInFormComponent implements OnInit {
     this.error = JSON.parse(error._body)['error'];
     return Promise.reject(error.message || error);
   }
-
-
-  ngOnInit() {
-  }
-
 }
