@@ -5,7 +5,9 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class SessionService {
 
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private headers = new Headers({
+    'Content-Type': 'application/json',
+  });
   private signInUrl = 'http://localhost:9000/api/sign_in';
 
   private static handleError(error: any): Promise<any> {

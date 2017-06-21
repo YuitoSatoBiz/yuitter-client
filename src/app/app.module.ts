@@ -13,7 +13,6 @@ import {
 } from '@angular/material';
 import {AppComponent} from './app.component';
 import 'hammerjs';
-import {CookieService} from 'angular2-cookie/services/cookies.service';
 import {TimeLineComponent} from './components/time-line/time-line.component';
 import {HeaderComponent} from './components/header/header.component';
 import {AppRoutingModule} from './app-routing/app-routing.module';
@@ -54,8 +53,7 @@ import {SessionService} from './services/session-service/session.service'
   ],
   providers: [
     TweetService,
-    SessionService,
-    CookieService
+    SessionService
   ],
   bootstrap: [AppComponent]
 })
