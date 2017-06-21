@@ -9,7 +9,8 @@ import {
   MdMenuModule,
   MdToolbarModule,
   MdInputModule,
-  MdChipsModule
+  MdChipsModule,
+  MdTabsModule
 } from '@angular/material';
 import {AppComponent} from './app.component';
 import 'hammerjs';
@@ -43,7 +44,8 @@ import {MemberService} from './services/member-service/member-service.service';
     MdButtonModule,
     MdCheckboxModule,
     MdInputModule,
-    MdChipsModule
+    MdChipsModule,
+    MdTabsModule
   ],
   declarations: [
     AppComponent,
