@@ -1,14 +1,12 @@
 <div class="container">
   <div *ngIf="currentMember" class="time-line">
-    <md-tab-group>
-      <md-tab *ngFor="let account of accounts" class="hogehoge">
-        // TODO タブのクリックアクションを考える
-        <div (click)="onClick(account)">
+    <md-tab-group (selectChange)="onLinkClick($event)" >
+      <md-tab *ngFor="let account of accounts">
+        <div>
           <ng-template md-tab-label>
-            <p>{{account.accountName}}</p>
+            <span>{{account.accountName}}</span>
           </ng-template>
         </div>
-        <!--TODOタブのクリックアクション動かない.-->
         <app-tweet-list [account]="account"></app-tweet-list>
       </md-tab>
     </md-tab-group>

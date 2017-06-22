@@ -31,13 +31,10 @@ export class TimeLineComponent implements OnInit {
       });
   }
 
-  onClick(account: Account): void {
-    this.currentAccount = account;
+  onLinkClick($event: any): void {
+    this.currentAccount = this.accounts[$event.index];
     this.cookieService.remove('accountId');
-    console.log(this.cookieService.getObject('accountId'));
-    console.log(this.cookieService.getAll());
-    console.log(this.cookieService.get('PLAY_SESSION'));
-    this.cookieService.put('accountId', account.accountId.toString());
+    this.cookieService.put('accountId', this.currentAccount.accountId.toString());
     console.log(this.cookieService.get('accountId'));
   }
 }
