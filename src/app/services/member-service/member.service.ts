@@ -44,6 +44,9 @@ export class MemberService {
       .toPromise()
       .then(response =>
         response.json() as Member
-      ).catch(MemberService.handleError)
+      ).catch( e => {
+        MemberService.handleError(e);
+        this.router.navigate(['/sign-in']);
+      })
   }
 }

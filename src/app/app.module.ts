@@ -28,6 +28,7 @@ import {SessionService} from './services/session-service/session.service';
 import {SignUpFormComponent} from './components/sign-up-form/sign-up-form.component'
 import {MemberService} from './services/member-service/member.service';
 import { TweetFormComponent } from './components/tweet-form/tweet-form.component';
+import {CookieService} from 'angular2-cookie/services/cookies.service';
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import { TweetFormComponent } from './components/tweet-form/tweet-form.component
   providers: [
     TweetService,
     SessionService,
-    MemberService
+    MemberService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

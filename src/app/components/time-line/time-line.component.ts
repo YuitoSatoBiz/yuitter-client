@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Account} from '../../classes/account'
 import {MemberService} from '../../services/member-service/member.service';
 import {Member} from 'app/classes/member';
+import {CookieService} from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-time-line',
@@ -14,7 +15,7 @@ export class TimeLineComponent implements OnInit {
   accounts: Account[];
   currentAccount: Account;
 
-  constructor(private memberService: MemberService) {
+  constructor(private memberService: MemberService, private cookieService: CookieService) {
   }
 
   ngOnInit() {
@@ -26,7 +27,12 @@ export class TimeLineComponent implements OnInit {
       .then(member => {
         this.currentMember = member;
         this.accounts = this.currentMember.accounts;
-        console.log(member.accounts);
       });
+  }
+
+  onLinkClick($event: any): void {
+    this.currentAccount = this.accounts[$event.index];
+    this.cookieService.remove('accountId');
+    this.cookieService.put('accountId', this.currentAccount.accountId.toString());
   }
 }
