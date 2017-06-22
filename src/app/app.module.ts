@@ -10,7 +10,8 @@ import {
   MdToolbarModule,
   MdInputModule,
   MdChipsModule,
-  MdTabsModule
+  MdTabsModule,
+  MdSelectModule
 } from '@angular/material';
 import {AppComponent} from './app.component';
 import 'hammerjs';
@@ -26,6 +27,7 @@ import {SignInFormComponent} from './components/sign-in-form/sign-in-form.compon
 import {SessionService} from './services/session-service/session.service';
 import {SignUpFormComponent} from './components/sign-up-form/sign-up-form.component'
 import {MemberService} from './services/member-service/member.service';
+import { TweetFormComponent } from './components/tweet-form/tweet-form.component';
 
 @NgModule({
   imports: [
@@ -45,7 +47,8 @@ import {MemberService} from './services/member-service/member.service';
     MdCheckboxModule,
     MdInputModule,
     MdChipsModule,
-    MdTabsModule
+    MdTabsModule,
+    MdSelectModule
   ],
   declarations: [
     AppComponent,
@@ -54,7 +57,8 @@ import {MemberService} from './services/member-service/member.service';
     TweetListComponent,
     TweetCardComponent,
     SignInFormComponent,
-    SignUpFormComponent
+    SignUpFormComponent,
+    TweetFormComponent
   ],
   providers: [
     TweetService,
