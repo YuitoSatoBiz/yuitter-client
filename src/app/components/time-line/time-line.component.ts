@@ -27,7 +27,6 @@ export class TimeLineComponent implements OnInit {
       .then(member => {
         this.currentMember = member;
         this.accounts = this.currentMember.accounts;
-        console.log(member.accounts);
       });
   }
 
@@ -35,6 +34,5 @@ export class TimeLineComponent implements OnInit {
     this.currentAccount = this.accounts[$event.index];
     this.cookieService.remove('accountId');
     this.cookieService.put('accountId', this.currentAccount.accountId.toString());
-    console.log(this.cookieService.get('accountId'));
   }
 }
