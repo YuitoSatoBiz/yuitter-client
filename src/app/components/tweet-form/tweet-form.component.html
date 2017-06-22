@@ -1,13 +1,13 @@
 <md-card>
   <md-card-header>
-    <form action="#" style="width: 100%;">
+    <form #tweetForm="ngForm" (ngSubmit)="onSubmit(tweetForm.value)" style="width: 100%;">
       <div class="mdl-grid">
-        <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--8-col">
-          <textarea class="mdl-textfield__input" type="text" rows="5" placeholder="今何してる？" maxlength="140"></textarea>
+        <div class="form-group mdl-textfield mdl-js-textfield mdl-cell mdl-cell--8-col">
+          <textarea formControlName="tweetText" class="form-control mdl-textfield__input" type="text" rows="5" placeholder="今何してる？" maxlength="140"></textarea>
           <label class="mdl-textfield__label"></label>
         </div>
-        <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
-          <md-select>
+        <div class=" mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
+          <md-select class="form-group">
             <md-option selected="true">
               aaa
             </md-option>
@@ -15,7 +15,7 @@
               bbb
             </md-option>
           </md-select>
-          <button md-raised-button color="primary" style="margin-top:15px;">
+          <button type="submit" md-raised-button color="primary" style="margin-top:15px;">
             ツイート
           </button>
         </div>
