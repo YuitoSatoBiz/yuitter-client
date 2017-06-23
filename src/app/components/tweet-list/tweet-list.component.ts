@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TweetService} from '../../services/tweet-service/tweet.service';
 import {Tweet} from '../../classes/tweet';
 import {Account} from '../../classes/account';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-tweet-list',
@@ -13,6 +14,8 @@ export class TweetListComponent implements OnInit {
   @Input() account: Account;
   @Input() accounts: Account[];
   tweets: Tweet[];
+  accountIds: number[];
+  // tweetForm: FormGroup;
 
   static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -30,5 +33,17 @@ export class TweetListComponent implements OnInit {
 
   ngOnInit() {
     this.getTweets();
+    this.accountIds = this.accounts.map(a => a.accountId);
+  }
+
+  onSubmit(tweetForm: FormGroup): void {
+    this.tweetService.create(tweetForm.value.tweetText, tweetForm.value.accountIds)
+      .then(tweet =>
+        this.tweets.unshift(tweet)
+      );
+    // this.tweetForm.reset
+    tweetForm.reset()
+
+    // ここからリクエストおくる
   }
 }

@@ -38,9 +38,9 @@ export class TweetService {
         }),
         { headers: this.headers, withCredentials: true })
       .toPromise()
-      .then(response => {
-        console.log(response.json() as Tweet);
-      })
+      .then(response =>
+        response.json() as Tweet
+      )
       .catch(TweetService.handleError)
   }
 }

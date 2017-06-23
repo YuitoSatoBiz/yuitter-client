@@ -27,7 +27,6 @@ import {SignInFormComponent} from './components/sign-in-form/sign-in-form.compon
 import {SessionService} from './services/session-service/session.service';
 import {SignUpFormComponent} from './components/sign-up-form/sign-up-form.component'
 import {MemberService} from './services/member-service/member.service';
-import { TweetFormComponent } from './components/tweet-form/tweet-form.component';
 import {CookieService} from 'angular2-cookie/services/cookies.service';
 
 @NgModule({
@@ -58,8 +57,7 @@ import {CookieService} from 'angular2-cookie/services/cookies.service';
     TweetListComponent,
     TweetCardComponent,
     SignInFormComponent,
-    SignUpFormComponent,
-    TweetFormComponent
+    SignUpFormComponent
   ],
   providers: [
     TweetService,
