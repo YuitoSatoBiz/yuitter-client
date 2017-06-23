@@ -19,12 +19,12 @@ export class TweetUpdateFormComponent implements OnInit {
               private dialogRef: MdDialogRef<TweetUpdateFormComponent>) {
   }
 
+  ngOnInit() {
+    this.tweet = this.data;
+  }
+
   onSubmit(tweetForm: FormGroup): void {
     this.tweetService.update(this.tweet, tweetForm.value.tweetText)
       .then(tweet => this.dialogRef.close(tweet));
-  }
-
-  ngOnInit() {
-    this.tweet = this.data;
   }
 }

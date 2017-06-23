@@ -30,6 +30,7 @@ import {MemberService} from './services/member-service/member.service';
 import {CookieService} from 'angular2-cookie/services/cookies.service';
 import {MdDialogModule} from '@angular/material';
 import {TweetUpdateFormComponent} from './components/tweet-update-form/tweet-update-form.component';
+import {TweetDeleteConfirmComponent} from './components/tweet-delete-confirm/tweet-delete-confirm.component';
 
 @NgModule({
   imports: [
@@ -61,7 +62,8 @@ import {TweetUpdateFormComponent} from './components/tweet-update-form/tweet-upd
     TweetCardComponent,
     SignInFormComponent,
     SignUpFormComponent,
-    TweetUpdateFormComponent
+    TweetUpdateFormComponent,
+    TweetDeleteConfirmComponent
   ],
   providers: [
     TweetService,
@@ -69,7 +71,10 @@ import {TweetUpdateFormComponent} from './components/tweet-update-form/tweet-upd
     MemberService,
     CookieService
   ],
-  entryComponents: [TweetUpdateFormComponent],
+  entryComponents: [
+    TweetUpdateFormComponent,
+    TweetDeleteConfirmComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
