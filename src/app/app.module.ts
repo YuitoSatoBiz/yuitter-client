@@ -28,6 +28,8 @@ import {SessionService} from './services/session-service/session.service';
 import {SignUpFormComponent} from './components/sign-up-form/sign-up-form.component'
 import {MemberService} from './services/member-service/member.service';
 import {CookieService} from 'angular2-cookie/services/cookies.service';
+import {MdDialogModule} from '@angular/material';
+import {TweetUpdateFormComponent} from './components/tweet-update-form/tweet-update-form.component';
 
 @NgModule({
   imports: [
@@ -48,7 +50,8 @@ import {CookieService} from 'angular2-cookie/services/cookies.service';
     MdInputModule,
     MdChipsModule,
     MdTabsModule,
-    MdSelectModule
+    MdSelectModule,
+    MdDialogModule
   ],
   declarations: [
     AppComponent,
@@ -57,7 +60,8 @@ import {CookieService} from 'angular2-cookie/services/cookies.service';
     TweetListComponent,
     TweetCardComponent,
     SignInFormComponent,
-    SignUpFormComponent
+    SignUpFormComponent,
+    TweetUpdateFormComponent
   ],
   providers: [
     TweetService,
@@ -65,6 +69,7 @@ import {CookieService} from 'angular2-cookie/services/cookies.service';
     MemberService,
     CookieService
   ],
+  entryComponents: [TweetUpdateFormComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

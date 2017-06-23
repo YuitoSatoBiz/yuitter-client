@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Tweet} from '../../classes/tweet';
+import {toPromise} from "rxjs/operator/toPromise";
 
 @Injectable()
 export class TweetService {
@@ -39,8 +40,22 @@ export class TweetService {
         { headers: this.headers, withCredentials: true })
       .toPromise()
       .then(response =>
-        response.json() as Tweet
-      )
+        response.json() as Tweet)
+      .catch(TweetService.handleError)
+  }
+
+  update(tweet: Tweet, tweetText: string): Promise<Tweet> {
+    return this.http
+      .put(
+        this.tweetsUrl + '/' + tweet.tweetId,
+        JSON.stringify({
+          tweetText: tweetText,
+          versionNo: tweet.versionNo
+        }),
+        { headers: this.headers, withCredentials: true })
+      .toPromise()
+      .then(response =>
+        response.json() as Tweet)
       .catch(TweetService.handleError)
   }
 }
