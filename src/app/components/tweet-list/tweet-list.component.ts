@@ -11,6 +11,7 @@ import {Account} from '../../classes/account';
 export class TweetListComponent implements OnInit {
 
   @Input() account: Account;
+  @Input() accounts: Account[];
   tweets: Tweet[];
 
   static handleError(error: any): Promise<any> {
