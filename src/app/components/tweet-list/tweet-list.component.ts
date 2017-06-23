@@ -23,7 +23,7 @@ export class TweetListComponent implements OnInit {
   }
 
   getTweets(): void {
-    this.tweetService.getTweets(this.account.accountId).then(tweets =>
+    this.tweetService.list(this.account.accountId).then(tweets =>
       this.tweets = tweets
     ).catch(TweetListComponent.handleError);
   }

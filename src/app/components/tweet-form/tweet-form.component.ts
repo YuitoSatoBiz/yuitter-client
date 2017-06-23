@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, FormControl} from '@angular/forms';
 import {Account} from '../../classes/account';
+import {TweetService} from '../../services/tweet-service/tweet.service'
 
 @Component({
   selector: 'app-tweet-form',
@@ -14,7 +15,7 @@ export class TweetFormComponent implements OnInit {
   accountIds: number[];
   tweetForm: FormGroup;
 
-  constructor() {
+  constructor(private tweetService: TweetService) {
   }
 
   ngOnInit() {
@@ -22,6 +23,8 @@ export class TweetFormComponent implements OnInit {
   }
 
   onSubmit(tweetForm: FormGroup): void {
-    console.log(tweetForm.value);
+    this.tweetService.create(tweetForm.value.tweetText, tweetForm.value.accountIds)
+      .then(tweet => console.log(tweet));
+    // ここからリクエストおくる
   }
 }
