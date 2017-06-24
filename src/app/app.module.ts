@@ -32,6 +32,7 @@ import {MdDialogModule} from '@angular/material';
 import {TweetUpdateFormComponent} from './components/tweet-update-form/tweet-update-form.component';
 import {TweetDeleteConfirmComponent} from './components/tweet-delete-confirm/tweet-delete-confirm.component';
 import {AccountDetailComponent} from './components/account-detail/account-detail.component';
+import {AccountService} from './services/account-service/account.service';
 
 @NgModule({
   imports: [
@@ -71,6 +72,7 @@ import {AccountDetailComponent} from './components/account-detail/account-detail
     TweetService,
     SessionService,
     MemberService,
+    AccountService,
     CookieService
   ],
   entryComponents: [
