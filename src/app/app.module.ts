@@ -10,7 +10,8 @@ import {
   MdToolbarModule,
   MdInputModule,
   MdChipsModule,
-  MdTabsModule
+  MdTabsModule,
+  MdSelectModule
 } from '@angular/material';
 import {AppComponent} from './app.component';
 import 'hammerjs';
@@ -27,6 +28,9 @@ import {SessionService} from './services/session-service/session.service';
 import {SignUpFormComponent} from './components/sign-up-form/sign-up-form.component'
 import {MemberService} from './services/member-service/member.service';
 import {CookieService} from 'angular2-cookie/services/cookies.service';
+import {MdDialogModule} from '@angular/material';
+import {TweetUpdateFormComponent} from './components/tweet-update-form/tweet-update-form.component';
+import {TweetDeleteConfirmComponent} from './components/tweet-delete-confirm/tweet-delete-confirm.component';
 
 @NgModule({
   imports: [
@@ -46,7 +50,9 @@ import {CookieService} from 'angular2-cookie/services/cookies.service';
     MdCheckboxModule,
     MdInputModule,
     MdChipsModule,
-    MdTabsModule
+    MdTabsModule,
+    MdSelectModule,
+    MdDialogModule
   ],
   declarations: [
     AppComponent,
@@ -55,13 +61,19 @@ import {CookieService} from 'angular2-cookie/services/cookies.service';
     TweetListComponent,
     TweetCardComponent,
     SignInFormComponent,
-    SignUpFormComponent
+    SignUpFormComponent,
+    TweetUpdateFormComponent,
+    TweetDeleteConfirmComponent
   ],
   providers: [
     TweetService,
     SessionService,
     MemberService,
     CookieService
+  ],
+  entryComponents: [
+    TweetUpdateFormComponent,
+    TweetDeleteConfirmComponent
   ],
   bootstrap: [AppComponent]
 })

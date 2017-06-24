@@ -1,4 +1,29 @@
 <div class="container">
+  <md-card>
+    <md-card-header>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" style="width: 100%;">
+        <div class="mdl-grid">
+          <div class="form-group mdl-textfield mdl-js-textfield mdl-cell mdl-cell--8-col">
+            <textarea name="tweetText" ngModel class="form-control mdl-textfield__input" type="text" rows="5" placeholder="今何してる？" maxlength="140" required #tweetText="ngModel"></textarea>
+            <label class="mdl-textfield__label"></label>
+          </div>
+          <div class=" mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
+            <md-select name="accountIds" ngModel class="form-group" #accounts="ngModel" placeholder="アカウント" required>
+              <md-option [value]="[account.accountId]" >
+                {{account.accountName}}
+              </md-option>
+              <md-option [value]="accountIds">
+                全てのアカウントでつぶやく
+              </md-option>
+            </md-select>
+            <button type="submit" md-raised-button color="primary" style="margin-top:15px;">
+              ツイート
+            </button>
+          </div>
+        </div>
+      </form>
+    </md-card-header>
+  </md-card>
   <md-list-item *ngFor="let tweet of tweets">
     <app-tweet-card [tweet]="tweet"></app-tweet-card>
   </md-list-item>
