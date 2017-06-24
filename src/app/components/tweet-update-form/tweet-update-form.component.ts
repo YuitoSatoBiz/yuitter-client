@@ -13,6 +13,7 @@ import {TweetService} from '../../services/tweet-service/tweet.service';
 export class TweetUpdateFormComponent implements OnInit {
 
   tweet: Tweet;
+  error: string;
 
   constructor(@Inject(MD_DIALOG_DATA) public data: Tweet,
               private tweetService: TweetService,
@@ -25,6 +26,12 @@ export class TweetUpdateFormComponent implements OnInit {
 
   onSubmit(tweetForm: FormGroup): void {
     this.tweetService.update(this.tweet, tweetForm.value.tweetText)
-      .then(tweet => this.dialogRef.close(tweet));
+      .then(tweet => this.dialogRef.close(tweet))
+      .catch(e => this.handleError(e));
+  }
+
+  private handleError(error: any): Promise<any> {
+    this.error = JSON.parse(error._body)['error'];
+    return Promise.reject(error.message || error);
   }
 }

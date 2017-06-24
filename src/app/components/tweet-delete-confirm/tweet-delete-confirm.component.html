@@ -1,4 +1,9 @@
-<md-dialog-content>ツイートを削除します</md-dialog-content>
+<md-dialog-content>
+  <p>ツイートを削除します</p>
+  <p *ngIf="error" style="color: red;">
+    {{error}}
+  </p>
+</md-dialog-content>
 <md-dialog-actions>
   <button md-button (click)="onClick()">Yes</button>
   <button md-button>No</button>

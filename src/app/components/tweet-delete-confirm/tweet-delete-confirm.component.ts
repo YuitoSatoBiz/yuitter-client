@@ -11,6 +11,7 @@ import {TweetService} from '../../services/tweet-service/tweet.service';
 export class TweetDeleteConfirmComponent implements OnInit {
 
   tweet: Tweet;
+  error: string;
 
   constructor(@Inject(MD_DIALOG_DATA) public data: Tweet,
               private tweetService: TweetService,
@@ -22,7 +23,13 @@ export class TweetDeleteConfirmComponent implements OnInit {
   }
 
   onClick(): void {
-    this.tweetService.delete(this.tweet.tweetId).
-      then(result => this.dialogRef.close(result));
+    this.tweetService.delete(this.tweet.tweetId)
+      .then(result => this.dialogRef.close(result))
+      .catch(e => this.handleError(e));
+  }
+
+  private handleError(error: any): Promise<any> {
+    this.error = JSON.parse(error._body)['error'];
+    return Promise.reject(error.message || error);
   }
 }
