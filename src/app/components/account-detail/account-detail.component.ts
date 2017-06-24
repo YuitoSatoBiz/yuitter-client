@@ -15,7 +15,7 @@ export class AccountDetailComponent implements OnInit {
     //   .subscribe(hero => this.hero = hero);
   }
 
-  ngOnInit() {s
+  ngOnInit() {
   }
 
 }
