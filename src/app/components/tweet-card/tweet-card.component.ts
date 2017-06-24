@@ -1,8 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MdDialog} from '@angular/material';
 import {Tweet} from '../../classes/tweet';
+import {Account} from '../../classes/account';
 import {TweetUpdateFormComponent} from '../tweet-update-form/tweet-update-form.component';
 import {TweetDeleteConfirmComponent} from '../tweet-delete-confirm/tweet-delete-confirm.component';
+import {CookieService, cookieServiceFactory} from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-tweet-card',
@@ -12,11 +14,13 @@ import {TweetDeleteConfirmComponent} from '../tweet-delete-confirm/tweet-delete-
 export class TweetCardComponent implements OnInit {
 
   @Input() tweet: Tweet;
+  currentAccountId: number;
 
-  constructor(private dialog: MdDialog) {
+  constructor(private dialog: MdDialog, private cookieService: CookieService) {
   }
 
   ngOnInit() {
+    this.currentAccountId = +this.cookieService.get('accountId')
   }
 
   openTweetUpdateForm(): void {
