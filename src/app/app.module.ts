@@ -31,6 +31,7 @@ import {CookieService} from 'angular2-cookie/services/cookies.service';
 import {MdDialogModule} from '@angular/material';
 import {TweetUpdateFormComponent} from './components/tweet-update-form/tweet-update-form.component';
 import {TweetDeleteConfirmComponent} from './components/tweet-delete-confirm/tweet-delete-confirm.component';
+import {AccountDetailComponent} from './components/account-detail/account-detail.component';
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import {TweetDeleteConfirmComponent} from './components/tweet-delete-confirm/twe
     SignInFormComponent,
     SignUpFormComponent,
     TweetUpdateFormComponent,
-    TweetDeleteConfirmComponent
+    TweetDeleteConfirmComponent,
+    AccountDetailComponent
   ],
   providers: [
     TweetService,
