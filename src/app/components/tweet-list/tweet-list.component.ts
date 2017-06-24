@@ -15,7 +15,6 @@ export class TweetListComponent implements OnInit {
   @Input() accounts: Account[];
   tweets: Tweet[];
   accountIds: number[];
-  // tweetForm: FormGroup;
 
   static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -41,9 +40,6 @@ export class TweetListComponent implements OnInit {
       .then(tweet =>
         this.tweets.unshift(tweet)
       );
-    // this.tweetForm.reset
     tweetForm.reset()
-
-    // ここからリクエストおくる
   }
 }
