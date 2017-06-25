@@ -23,7 +23,7 @@ export class TweetDeleteConfirmComponent implements OnInit {
   }
 
   onClick(): void {
-    this.tweetService.delete(this.tweet.tweetId)
+    this.tweetService.remove(this.tweet.tweetId)
       .then(result => this.dialogRef.close(result))
       .catch(e => this.handleError(e));
   }
