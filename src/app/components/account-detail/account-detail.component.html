@@ -4,17 +4,17 @@
   <div class="container">
     <div class="account-header--container">
       <div class="mdl-grid" style="width: 50%; margin-left: 0;">
-        <div class="account-header--content">
+        <div *ngIf="tweets" class="account-header--content">
           <span>ツイート</span><br>
-          <span>100</span>
+          <span>{{tweets.length}}</span>
         </div>
-        <div class="account-header--content">
+        <div *ngIf="followees" class="account-header--content">
           <span>フォロー</span><br>
-          <span>100</span>
+          <span>{{this.followees.length}}</span>
         </div>
-        <div class="account-header--content">
+        <div *ngIf="followers" class="account-header--content">
           <span>フォロワー</span><br>
-          <span>100</span>
+          <span>{{this.followers.length}}</span>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
 </div>
 <div class="container">
   <div class="account-avatar"></div>
-  <div class="tweets-list">
+  <div *ngIf="tweets" class="tweets-list">
     <md-list-item *ngFor="let tweet of tweets">
       <app-tweet-card [tweet]="tweet"></app-tweet-card>
     </md-list-item>

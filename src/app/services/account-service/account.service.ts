@@ -27,4 +27,22 @@ export class AccountService {
       })
       .catch(AccountService.handleError);
   }
+
+  listFollowers(accountId: number): Promise<Account[]> {
+    return this.http.get(this.accountsUrl + '/followers/' + accountId, { withCredentials: true })
+      .toPromise()
+      .then(response => {
+        return response.json() as Account[];
+      })
+      .catch(AccountService.handleError);
+  }
+
+  listFollowees(accountId: number): Promise<Account[]> {
+    return this.http.get(this.accountsUrl + '/followees/' + accountId, { withCredentials: true })
+      .toPromise()
+      .then(response => {
+        return response.json() as Account[];
+      })
+      .catch(AccountService.handleError);
+  }
 }

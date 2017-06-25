@@ -16,6 +16,8 @@ export class AccountDetailComponent implements OnInit {
 
   account: Account;
   tweets: Tweet[];
+  followers: Account[];
+  followees: Account[];
   error: String;
 
   constructor(private route: ActivatedRoute,
@@ -25,20 +27,38 @@ export class AccountDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params
-      .switchMap((params: Params) => this.accountService.find(+params['accountId'])
-        // .then(account => this.account = account)
-      )
-      .subscribe(account => {
-        this.account = account;
-        this.tweetServie.searchByAccountId(this.account.accountId)
-          .then(tweets => this.tweets = tweets);
-      });
-
+    this.setAccount();
+    this.setTweets();
+    this.setFollowers();
+    this.setFollowees();
   }
 
   private handleError(error: any): Promise<any> {
     this.error = JSON.parse(error._body)['error'];
     return Promise.reject(error.message || error);
+  }
+
+  private setAccount(): void {
+    this.route.params
+      .switchMap((params: Params) => this.accountService.find(+params['accountId']))
+      .subscribe(account => this.account = account);
+  }
+
+  private setTweets(): void {
+    this.route.params
+      .switchMap((params: Params) => this.tweetServie.searchByAccountId(+params['accountId']))
+      .subscribe(tweets => this.tweets = tweets);
+  }
+
+  private setFollowers(): void {
+    this.route.params
+      .switchMap((params: Params) => this.accountService.listFollowers(+params['accountId']))
+      .subscribe(followers => this.followers = followers);
+  }
+
+  private setFollowees(): void {
+    this.route.params
+      .switchMap((params: Params) => this.accountService.listFollowees(+params['accountId']))
+      .subscribe(followees => this.followees = followees);
   }
 }
