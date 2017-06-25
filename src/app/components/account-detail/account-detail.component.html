@@ -1,3 +1,30 @@
-<p>
-  account-detail works!
-</p>
+<div class="account-header">
+</div>
+<div class="account-navbar">
+  <div class="container">
+    <div class="account-header--container">
+      <div class="mdl-grid" style="width: 50%; margin-left: 0;">
+        <div class="account-header--content">
+          <span>ツイート</span><br>
+          <span>100</span>
+        </div>
+        <div class="account-header--content">
+          <span>フォロー</span><br>
+          <span>100</span>
+        </div>
+        <div class="account-header--content">
+          <span>フォロワー</span><br>
+          <span>100</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="account-avatar"></div>
+  <div class="tweets-list">
+    <md-list-item *ngFor="let tweet of tweets">
+      <app-tweet-card [tweet]="tweet"></app-tweet-card>
+    </md-list-item>
+  </div>
+</div>

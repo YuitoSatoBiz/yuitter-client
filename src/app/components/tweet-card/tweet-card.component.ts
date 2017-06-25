@@ -1,10 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MdDialog} from '@angular/material';
 import {Tweet} from '../../classes/tweet';
-import {Account} from '../../classes/account';
 import {TweetUpdateFormComponent} from '../tweet-update-form/tweet-update-form.component';
 import {TweetDeleteConfirmComponent} from '../tweet-delete-confirm/tweet-delete-confirm.component';
-import {CookieService, cookieServiceFactory} from 'angular2-cookie/core';
+import {CookieService} from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-tweet-card',

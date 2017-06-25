@@ -23,8 +23,15 @@ export class TweetService {
     return this.http.get(this.tweetsUrl + '/' + accountId, { withCredentials: true })
       .toPromise()
       .then(response =>
-        response.json() as Tweet[]
-      )
+        response.json() as Tweet[])
+      .catch(TweetService.handleError);
+  }
+
+  searchByAccountId(accountId: number): Promise<Tweet[]> {
+    return this.http.get(this.tweetsUrl + '/search/' + accountId, {withCredentials: true})
+      .toPromise()
+      .then(response =>
+        response.json() as Tweet[])
       .catch(TweetService.handleError);
   }
 
@@ -58,7 +65,7 @@ export class TweetService {
       .catch(TweetService.handleError)
   }
 
-  delete(tweetId: number): Promise<void> {
+  remove(tweetId: number): Promise<void> {
     return this.http
       .delete(
         this.tweetsUrl + '/' + tweetId,
