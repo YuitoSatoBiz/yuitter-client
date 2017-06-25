@@ -1,7 +1,7 @@
 <md-card *ngIf="tweet">
   <md-card-header>
-    <img md-card-avatar src="../../../assets/public/aaa.jpg">
-    <md-card-title>{{tweet.accounts[0].accountName}}</md-card-title>
+    <img (click)="toAccountDetail()" md-card-avatar src="../../../assets/public/aaa.jpg">
+    <md-card-title (click)="toAccountDetail()">{{tweet.accounts[0].accountName}}</md-card-title>
   </md-card-header>
   <md-card-content>
     <p>
@@ -12,7 +12,7 @@
     <div class="mdl-card__menu">
       <button (click)="openTweetUpdateForm()" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
         <i class="material-icons">create</i>
-      </button>
+      </button>z
       <button (click)="openTweetDeleteConfirm()" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
         <i class="material-icons">delete_forever</i>
       </button>

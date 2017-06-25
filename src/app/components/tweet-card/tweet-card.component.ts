@@ -4,6 +4,7 @@ import {Tweet} from '../../classes/tweet';
 import {TweetUpdateFormComponent} from '../tweet-update-form/tweet-update-form.component';
 import {TweetDeleteConfirmComponent} from '../tweet-delete-confirm/tweet-delete-confirm.component';
 import {CookieService} from 'angular2-cookie/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tweet-card',
@@ -15,7 +16,7 @@ export class TweetCardComponent implements OnInit {
   @Input() tweet: Tweet;
   currentAccountId: number;
 
-  constructor(private dialog: MdDialog, private cookieService: CookieService) {
+  constructor(private dialog: MdDialog, private cookieService: CookieService, private router: Router) {
   }
 
   ngOnInit() {
@@ -43,5 +44,9 @@ export class TweetCardComponent implements OnInit {
         this.tweet = null;
       }
     })
+  }
+
+  toAccountDetail() {
+    this.router.navigate(['/account/', this.tweet.accounts[0].accountId]);
   }
 }
