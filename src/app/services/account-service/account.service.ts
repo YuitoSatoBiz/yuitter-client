@@ -46,7 +46,7 @@ export class AccountService {
       .catch(AccountService.handleError);
   }
 
-  create(accountName: String): Promise<Account> {
+  create(accountName: string): Promise<Account> {
     return this.http
       .post(
         this.accountsUrl,

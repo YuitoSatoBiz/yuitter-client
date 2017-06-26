@@ -6,6 +6,8 @@ import {MemberService} from '../../services/member-service/member.service';
 import {TweetService} from '../../services/tweet-service/tweet.service';
 import {AccountService} from '../../services/account-service/account.service';
 import {Tweet} from '../../classes/tweet';
+import {AccountFormComponent} from '../account-form/account-form.component';
+import {MdDialog} from '@angular/material';
 
 @Component({
   selector: 'app-member-detail',
@@ -31,7 +33,8 @@ export class MemberDetailComponent implements OnInit {
   constructor(private memberService: MemberService,
               private tweetService: TweetService,
               private accountService: AccountService,
-              private cookieService: CookieService) {
+              private cookieService: CookieService,
+              private dialog: MdDialog) {
   }
 
   ngOnInit() {
@@ -60,6 +63,17 @@ export class MemberDetailComponent implements OnInit {
     this.setTweets();
     this.setFollowers();
     this.setFollowees();
+  }
+
+  openAccountForm(): void {
+    const dialog = this.dialog.open(AccountFormComponent, {
+      width: '500px'
+    });
+    dialog.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.accounts.push(result);
+      }
+    })
   }
 
   private setTweets() {

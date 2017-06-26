@@ -83,7 +83,8 @@ import { AccountFormComponent } from './components/account-form/account-form.com
   ],
   entryComponents: [
     TweetUpdateFormComponent,
-    TweetDeleteConfirmComponent
+    TweetDeleteConfirmComponent,
+    AccountFormComponent
   ],
   bootstrap: [AppComponent]
 })
