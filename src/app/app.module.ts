@@ -36,6 +36,7 @@ import {AccountService} from './services/account-service/account.service';
 import { MemberDetailComponent } from './components/member-detail/member-detail.component';
 import { AccountTweetListComponent } from './components/account-tweet-list/account-tweet-list.component';
 import { AccountFormComponent } from './components/account-form/account-form.component';
+import {AccountFollowingService} from './services/account-following-service/account-following.service';
 
 @NgModule({
   imports: [
@@ -79,6 +80,7 @@ import { AccountFormComponent } from './components/account-form/account-form.com
     SessionService,
     MemberService,
     AccountService,
+    AccountFollowingService,
     CookieService
   ],
   entryComponents: [
