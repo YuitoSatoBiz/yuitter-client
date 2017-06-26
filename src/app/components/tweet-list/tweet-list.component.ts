@@ -11,6 +11,7 @@ import {FormGroup} from '@angular/forms';
 })
 export class TweetListComponent implements OnInit {
 
+  @Input() currentAccount: Account[];
   @Input() account: Account;
   @Input() accounts: Account[];
   tweets: Tweet[];

@@ -27,6 +27,9 @@ export class TimeLineComponent implements OnInit {
       .then(member => {
         this.currentMember = member;
         this.accounts = this.currentMember.accounts;
+        this.currentAccount = this.accounts[0];
+        this.cookieService.remove('accountId');
+        this.cookieService.put('accountId', this.currentAccount.accountId.toString());
       });
   }
 

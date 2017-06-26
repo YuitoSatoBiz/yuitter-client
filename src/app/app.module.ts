@@ -34,6 +34,7 @@ import {TweetDeleteConfirmComponent} from './components/tweet-delete-confirm/twe
 import {AccountDetailComponent} from './components/account-detail/account-detail.component';
 import {AccountService} from './services/account-service/account.service';
 import { MemberDetailComponent } from './components/member-detail/member-detail.component';
+import { AccountTweetListComponent } from './components/account-tweet-list/account-tweet-list.component';
 
 @NgModule({
   imports: [
@@ -68,7 +69,8 @@ import { MemberDetailComponent } from './components/member-detail/member-detail.
     TweetUpdateFormComponent,
     TweetDeleteConfirmComponent,
     AccountDetailComponent,
-    MemberDetailComponent
+    MemberDetailComponent,
+    AccountTweetListComponent
   ],
   providers: [
     TweetService,

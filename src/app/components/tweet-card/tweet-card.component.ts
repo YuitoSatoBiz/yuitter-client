@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MdDialog} from '@angular/material';
 import {Tweet} from '../../classes/tweet';
+import {Account} from '../../classes/account';
 import {TweetUpdateFormComponent} from '../tweet-update-form/tweet-update-form.component';
 import {TweetDeleteConfirmComponent} from '../tweet-delete-confirm/tweet-delete-confirm.component';
 import {CookieService} from 'angular2-cookie/core';
@@ -14,13 +15,15 @@ import {Router} from '@angular/router';
 export class TweetCardComponent implements OnInit {
 
   @Input() tweet: Tweet;
-  currentAccountId: number;
+  @Input() currentAccount: Account;
+  accoundIds: number[];
 
   constructor(private dialog: MdDialog, private cookieService: CookieService, private router: Router) {
   }
 
   ngOnInit() {
-    this.currentAccountId = +this.cookieService.get('accountId')
+    console.log(this.currentAccount);
+    this.accoundIds = this.tweet.accounts.map(a => a.accountId);
   }
 
   openTweetUpdateForm(): void {

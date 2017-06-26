@@ -1,0 +1,50 @@
+.container {
+  margin: 0 auto;
+  width: 1190px;
+  position: relative;
+}
+
+.time-line {
+  margin: 0 auto;
+  width: 580px;
+}
+
+.account-header {
+  height: 280px;
+  background-color: aquamarine;
+  margin-top: -10px;
+}
+
+.account-header--container {
+  width: 580px;
+  margin: 0 auto;
+}
+
+.account-header--content {
+  display: inline-block;
+  width: 80px;
+}
+
+.account-avatar {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  top: -178px;
+  background-color: crimson;
+}
+
+.account-name {
+  position: absolute;
+  top: 6px;
+  padding-left: 4px;
+}
+
+.account-navbar {
+  background-color: white;
+  height: 60px;
+}
+
+.tweets-list {
+  margin: 10px auto 0 auto;
+  width: 580px;
+}

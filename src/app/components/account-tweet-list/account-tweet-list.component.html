@@ -1,0 +1,5 @@
+<div *ngIf="tweets" class="tweets-list">
+  <md-list-item *ngFor="let tweet of tweets">
+    <app-tweet-card [currentAccount]="currentAccount" [tweet]="tweet"></app-tweet-card>
+  </md-list-item>
+</div>
