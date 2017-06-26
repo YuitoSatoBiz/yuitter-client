@@ -28,6 +28,12 @@
   background-color: crimson;
 }
 
+.account-name {
+  position: absolute;
+  top: 6px;
+  padding-left: 4px;
+}
+
 .account-navbar {
   background-color: white;
   height: 60px;
