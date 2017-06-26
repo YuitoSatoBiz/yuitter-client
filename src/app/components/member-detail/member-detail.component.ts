@@ -38,22 +38,7 @@ export class MemberDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurrentMember();
-  }
-
-  getCurrentMember(): void {
-    this.memberService.findCurrent()
-      .then(member => {
-        this.currentMember = member;
-        this.accounts = this.currentMember.accounts;
-        this.currentAccount = this.accounts[0];
-        this.currentAccountIds = this.currentMember.accounts.map(account => account.accountId);
-        this.cookieService.remove('accountId');
-        this.cookieService.put('accountId', this.currentAccount.accountId.toString());
-        this.setTweets();
-        this.setFollowers();
-        this.setFollowees();
-      });
+    this.setCurrentMember();
   }
 
   onLinkClick($event: any): void {
@@ -74,6 +59,21 @@ export class MemberDetailComponent implements OnInit {
         this.accounts.push(result);
       }
     })
+  }
+
+  private setCurrentMember(): void {
+    this.memberService.findCurrent()
+      .then(member => {
+        this.currentMember = member;
+        this.accounts = this.currentMember.accounts;
+        this.currentAccount = this.accounts[0];
+        this.currentAccountIds = this.currentMember.accounts.map(account => account.accountId);
+        this.cookieService.remove('accountId');
+        this.cookieService.put('accountId', this.currentAccount.accountId.toString());
+        this.setTweets();
+        this.setFollowers();
+        this.setFollowees();
+      });
   }
 
   private setTweets() {
