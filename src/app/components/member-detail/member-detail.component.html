@@ -1,19 +1,24 @@
 <div class="account-header">
 </div>
 <div class="account-navbar">
-  <div class="account-header--container">
-    <div class="mdl-grid" style="width: 50%; margin-left: 0;">
-      <div *ngIf="tweets" class="account-header--content">
-        <span>ツイート</span><br>
-        <span>{{tweets.length}}</span>
-      </div>
-      <div *ngIf="followees" class="account-header--content">
-        <span>フォロー</span><br>
-        <span>{{this.followees.length}}</span>
-      </div>
-      <div *ngIf="followers" class="account-header--content">
-        <span>フォロワー</span><br>
-        <span>{{this.followers.length}}</span>
+  <div class="container">
+    <div class="account-header--container">
+      <div class="mdl-grid">
+        <div *ngIf="tweets" class="account-header--content">
+          <span>ツイート</span><br>
+          <span>{{tweets.length}}</span>
+        </div>
+        <div *ngIf="followees" class="account-header--content">
+          <span>フォロー</span><br>
+          <span>{{this.followees.length}}</span>
+        </div>
+        <div *ngIf="followers" class="account-header--content">
+          <span>フォロワー</span><br>
+          <span>{{this.followers.length}}</span>
+        </div>
+        <div class="account-header--content" style="margin-left:190px;margin-top:4px;">
+          <button md-raised-button color="accent">アカウント追加</button>
+        </div>
       </div>
     </div>
   </div>
@@ -36,7 +41,8 @@
             <span>{{account.accountName}}</span>
           </ng-template>
         </div>
-        <app-account-tweet-list [tweets]="tweets" [currentAccountIds]="currentAccountIds" [account]="account"></app-account-tweet-list>
+        <app-account-tweet-list [tweets]="tweets" [currentAccountIds]="currentAccountIds"
+                                [account]="account"></app-account-tweet-list>
       </md-tab>
     </md-tab-group>
   </div>
