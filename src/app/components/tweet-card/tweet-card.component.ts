@@ -14,7 +14,6 @@ import {Router} from '@angular/router';
 })
 export class TweetCardComponent implements OnInit {
 
-  @Input() currentAccount: Account;
   @Input() currentAccountIds: number[];
   @Input() tweet: Tweet;
   account: Account;
