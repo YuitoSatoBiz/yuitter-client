@@ -45,4 +45,17 @@ export class AccountService {
       })
       .catch(AccountService.handleError);
   }
+
+  create(accountName: String): Promise<Account> {
+    return this.http
+      .post(
+        this.accountsUrl,
+        JSON.stringify({
+          accountName: accountName
+        }),
+        { headers: this.headers, withCredentials: true })
+      .toPromise()
+      .then(account => account.json() as Account)
+      .catch(AccountService.handleError);
+  }
 }
