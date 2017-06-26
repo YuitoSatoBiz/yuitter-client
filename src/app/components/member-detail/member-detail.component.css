@@ -4,6 +4,11 @@
   position: relative;
 }
 
+.time-line {
+  margin: 0 auto;
+  width: 580px;
+}
+
 .account-header {
   height: 280px;
   background-color: aquamarine;

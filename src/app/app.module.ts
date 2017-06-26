@@ -33,6 +33,9 @@ import {TweetUpdateFormComponent} from './components/tweet-update-form/tweet-upd
 import {TweetDeleteConfirmComponent} from './components/tweet-delete-confirm/tweet-delete-confirm.component';
 import {AccountDetailComponent} from './components/account-detail/account-detail.component';
 import {AccountService} from './services/account-service/account.service';
+import { MemberDetailComponent } from './components/member-detail/member-detail.component';
+import { AccountTweetListComponent } from './components/account-tweet-list/account-tweet-list.component';
+import { AccountFormComponent } from './components/account-form/account-form.component';
 
 @NgModule({
   imports: [
@@ -66,7 +69,10 @@ import {AccountService} from './services/account-service/account.service';
     SignUpFormComponent,
     TweetUpdateFormComponent,
     TweetDeleteConfirmComponent,
-    AccountDetailComponent
+    AccountDetailComponent,
+    MemberDetailComponent,
+    AccountTweetListComponent,
+    AccountFormComponent
   ],
   providers: [
     TweetService,
@@ -77,7 +83,8 @@ import {AccountService} from './services/account-service/account.service';
   ],
   entryComponents: [
     TweetUpdateFormComponent,
-    TweetDeleteConfirmComponent
+    TweetDeleteConfirmComponent,
+    AccountFormComponent
   ],
   bootstrap: [AppComponent]
 })

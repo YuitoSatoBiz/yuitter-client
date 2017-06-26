@@ -1,0 +1,50 @@
+<div class="account-header">
+</div>
+<div class="account-navbar">
+  <div class="container">
+    <div class="account-header--container">
+      <div class="mdl-grid">
+        <div *ngIf="tweets" class="account-header--content">
+          <span>ツイート</span><br>
+          <span>{{tweets.length}}</span>
+        </div>
+        <div *ngIf="followees" class="account-header--content">
+          <span>フォロー</span><br>
+          <span>{{this.followees.length}}</span>
+        </div>
+        <div *ngIf="followers" class="account-header--content">
+          <span>フォロワー</span><br>
+          <span>{{this.followers.length}}</span>
+        </div>
+        <div class="account-header--content" style="margin-left:190px;margin-top:4px;">
+          <button (click)="openAccountForm()" md-raised-button color="accent">アカウント追加</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="account-avatar"></div>
+  <div *ngIf="currentAccount" class="account-name">
+    <h4>
+      {{currentAccount.accountName}}
+    </h4>
+    <span>
+      {{currentMember.emailAddress}}<br>
+      さんのマイページ
+    </span>
+  </div>
+  <div *ngIf="currentMember" class="time-line">
+    <md-tab-group (selectChange)="onLinkClick($event)">
+      <md-tab *ngFor="let account of accounts">
+        <div>
+          <ng-template md-tab-label>
+            <span>{{account.accountName}}</span>
+          </ng-template>
+        </div>
+        <app-account-tweet-list [tweets]="tweets" [currentAccountIds]="currentAccountIds"
+                                [account]="account"></app-account-tweet-list>
+      </md-tab>
+    </md-tab-group>
+  </div>
+</div>

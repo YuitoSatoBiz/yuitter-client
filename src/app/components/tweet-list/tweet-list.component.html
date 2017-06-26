@@ -25,6 +25,6 @@
     </md-card-header>
   </md-card>
   <md-list-item *ngFor="let tweet of tweets">
-    <app-tweet-card [tweet]="tweet"></app-tweet-card>
+    <app-tweet-card [currentAccountIds]="currentAccountIds" [tweet]="tweet"></app-tweet-card>
   </md-list-item>
 </div>

@@ -1,0 +1,46 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" style="width:100%;">
+  <div class="content">
+    <md-card-title class="sigin-header">
+      アカウントを追加する
+    </md-card-title>
+    <md-list *ngIf="error">
+      <p style="color: red;">
+        {{error}}
+      </p>
+    </md-list>
+    <md-list class="form-group">
+      <div>
+        <md-list-item>
+          <md-input-container>
+            <input name="accountName" class="form-control" ngModel mdInput placeholder="Nickname" #accountName="ngModel"/>
+          </md-input-container>
+        </md-list-item>
+      </div>
+      <div class="image-input">
+        <md-list-item>
+          <label
+            class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">file_upload</i>
+            <input name="avatar" class="form-control" ngModel type="file" style="display: none;" #avatar="ngModel"/>
+          </label>
+          <span>プロフィール画像</span>
+        </md-list-item>
+      </div>
+      <div class="image-input">
+        <md-list-item>
+          <label
+            class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">file_upload</i>
+            <input name="backgroundImage" class="form-control" ngModel type="file" style="display: none;" #backgroundImage="ngModel"/>
+          </label>
+          <span>背景画像</span>
+        </md-list-item>
+      </div>
+      <md-list-item>
+        <button type="submit" md-raised-button color="primary">
+          追加
+        </button>
+      </md-list-item>
+    </md-list>
+  </div>
+</form>

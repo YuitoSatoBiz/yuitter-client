@@ -14,6 +14,7 @@ export class TimeLineComponent implements OnInit {
   currentMember: Member;
   accounts: Account[];
   currentAccount: Account;
+  currentAccountIds: number[];
 
   constructor(private memberService: MemberService, private cookieService: CookieService) {
   }
@@ -27,6 +28,10 @@ export class TimeLineComponent implements OnInit {
       .then(member => {
         this.currentMember = member;
         this.accounts = this.currentMember.accounts;
+        this.currentAccount = this.accounts[0];
+        this.currentAccountIds = this.currentMember.accounts.map(account => account.accountId);
+        this.cookieService.remove('accountId');
+        this.cookieService.put('accountId', this.currentAccount.accountId.toString());
       });
   }
 
