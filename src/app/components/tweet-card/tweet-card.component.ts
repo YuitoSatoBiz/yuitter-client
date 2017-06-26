@@ -14,16 +14,15 @@ import {Router} from '@angular/router';
 })
 export class TweetCardComponent implements OnInit {
 
-  @Input() tweet: Tweet;
   @Input() currentAccount: Account;
-  accoundIds: number[];
+  @Input() currentAccountIds: number[];
+  @Input() tweet: Tweet;
+  account: Account;
 
   constructor(private dialog: MdDialog, private cookieService: CookieService, private router: Router) {
   }
 
   ngOnInit() {
-    console.log(this.currentAccount);
-    this.accoundIds = this.tweet.accounts.map(a => a.accountId);
   }
 
   openTweetUpdateForm(): void {

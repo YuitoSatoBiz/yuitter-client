@@ -14,6 +14,7 @@ export class TweetListComponent implements OnInit {
   @Input() currentAccount: Account[];
   @Input() account: Account;
   @Input() accounts: Account[];
+  @Input() currentAccountIds: number[];
   tweets: Tweet[];
   accountIds: number[];
 

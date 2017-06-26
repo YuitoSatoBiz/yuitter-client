@@ -12,6 +12,7 @@ export class AccountTweetListComponent implements OnInit {
 
   @Input() account: Account;
   @Input() currentAccount: Account;
+  @Input() currentAccountIds: number[];
   tweets: Tweet[];
 
   static handleError(error: any): Promise<any> {
