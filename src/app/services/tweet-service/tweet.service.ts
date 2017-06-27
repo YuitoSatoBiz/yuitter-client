@@ -6,7 +6,7 @@ import {Tweet} from '../../classes/tweet';
 @Injectable()
 export class TweetService {
 
-  private tweetsUrl = '/api/tweets';
+  private tweetsUrl = 'http://localhost:9000/api/tweets';
   private headers = new Headers({
     'Content-Type': 'application/json',
   });

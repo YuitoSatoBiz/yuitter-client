@@ -32,27 +32,37 @@
       </div>
       <div class="image-input">
         <md-list-item>
-          <label
-            class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-            <i class="material-icons">file_upload</i>
-            <input type="file" style="display: none;" #avatar/>
-          </label>
-          <span>プロフィール画像</span>
+          <image-upload
+            [max]="100"
+            [url]="'http://localhost:9000/api/images'"
+            [headers]="[
+    {header: 'Authorization', withCredentials: true}]"
+            [buttonCaption]="'プロフィール画像'"
+            [dropBoxMessage]="'or ここにドロップ'"
+            [extensions]="['jpg','png','gif']"
+            (onFileUploadFinish)="avatarUploaded($event)"
+          ></image-upload>
         </md-list-item>
       </div>
       <div class="image-input">
-      <md-list-item>
-          <label
-            class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-            <i class="material-icons">file_upload</i>
-            <input type="file" style="display: none;" #backgroundImage/>
-          </label>
-          <span>背景画像</span>
+        <md-list-item>
+          <image-upload
+            [max]="100"
+            [url]="'http://localhost:9000/api/images'"
+            [headers]="[
+    {header: 'Authorization', withCredentials: true}]"
+            [buttonCaption]="'背景画像'"
+            [dropBoxMessage]="'or ここにドロップ'"
+            [extensions]="['jpg','png','gif']"
+            (onFileUploadFinish)="backgroundImageUploaded($event)"
+          ></image-upload>
         </md-list-item>
       </div>
       <md-list-item>
-        <button (click)="signUp(accountName.value, emailAddress.value, password.value, avatar.value, backgroundImage.value)" md-raised-button
-                color="primary">
+        <button
+          (click)="signUp(accountName.value, emailAddress.value, password.value)"
+          md-raised-button
+          color="primary">
           サインアップ
         </button>
         <a routerLink="/sign-in">or サインイン</a>

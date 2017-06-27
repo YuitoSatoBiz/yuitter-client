@@ -1,6 +1,6 @@
 <md-card *ngIf="tweet">
   <md-card-header>
-    <img (click)="toAccountDetail()" md-card-avatar src="../../../assets/public/aaa.jpg">
+    <img (click)="toAccountDetail()" md-card-avatar src={{tweet.accounts[0].avatar}}>
     <md-card-title (click)="toAccountDetail()">{{tweet.accounts[0].accountName}}</md-card-title>
   </md-card-header>
   <md-card-content>

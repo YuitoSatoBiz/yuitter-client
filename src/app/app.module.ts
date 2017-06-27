@@ -39,6 +39,7 @@ import {AccountFormComponent} from './components/account-form/account-form.compo
 import {AccountFollowingService} from './services/account-following-service/account-following.service';
 import {AccountSearchComponent} from './components/account-search/account-search.component';
 import {AccountCardComponent} from './components/account-card/account-card.component';
+import {ImageUploadModule} from 'angular2-image-upload';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import {AccountCardComponent} from './components/account-card/account-card.compo
     AppRoutingModule,
     HttpModule,
     FormsModule,
+    ImageUploadModule.forRoot(),
     MdButtonModule,
     MdCheckboxModule,
     MdButtonModule,
@@ -60,6 +62,7 @@ import {AccountCardComponent} from './components/account-card/account-card.compo
     MdChipsModule,
     MdTabsModule,
     MdSelectModule,
+
     MdDialogModule
   ],
   declarations: [

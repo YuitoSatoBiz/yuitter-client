@@ -11,8 +11,9 @@ export class MemberService {
   private headers = new Headers({
     'Content-Type': 'application/json',
   });
-  private membersUrl = '/api/members';
-  private currentMemberUrl = '/api/members/current';
+  private assetsUrl = 'http://localhost:9000/assets/images/';
+  private membersUrl = 'http://localhost:9000/api/members';
+  private currentMemberUrl = 'http://localhost:9000/api/members/current';
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -22,14 +23,22 @@ export class MemberService {
   constructor(private http: Http, private router: Router, private sessionService: SessionService) {
   }
 
-  create(accountName: String, emailAddress: String, password: String): Promise<void> {
+  create(accountName: String, emailAddress: String, password: String, avatar: string, backgroundImage: string): Promise<void> {
+    let avatarPath: string;
+    if (avatar != null) {
+      avatarPath = this.assetsUrl + avatar;
+    }
+    let backgroundImagePath: string;
+    if (backgroundImage != null) {
+      backgroundImagePath = this.assetsUrl + backgroundImage;
+    }
     return this.http
       .post(
         this.membersUrl,
         JSON.stringify({
           emailAddress: emailAddress,
           password: password,
-          account: { accountName: accountName, avatar: 'hoge', backgroundImage: 'hogehoge' }
+          account: { accountName: accountName, avatar: avatarPath, backgroundImage: backgroundImagePath }
         }),
         { headers: this.headers })
       .toPromise()

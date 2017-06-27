@@ -9,7 +9,7 @@ export class SessionService {
   private headers = new Headers({
     'Content-Type': 'application/json',
   });
-  private signInUrl = '/api/sign_in';
+  private signInUrl = 'http://localhost:9000/api/sign_in';
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
