@@ -18,22 +18,30 @@
       </div>
       <div class="image-input">
         <md-list-item>
-          <label
-            class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-            <i class="material-icons">file_upload</i>
-            <input name="avatar" class="form-control" ngModel type="file" style="display: none;" #avatar="ngModel"/>
-          </label>
-          <span>プロフィール画像</span>
+          <image-upload
+            [max]="100"
+            [url]="'http://localhost:9000/api/images'"
+            [headers]="[
+    {header: 'Authorization', withCredentials: true}]"
+            [buttonCaption]="'プロフィール画像'"
+            [dropBoxMessage]="'or ここにドロップ'"
+            [extensions]="['jpg','png','gif']"
+            (onFileUploadFinish)="avatarUploaded($event)"
+          ></image-upload>
         </md-list-item>
       </div>
       <div class="image-input">
         <md-list-item>
-          <label
-            class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-            <i class="material-icons">file_upload</i>
-            <input name="backgroundImage" class="form-control" ngModel type="file" style="display: none;" #backgroundImage="ngModel"/>
-          </label>
-          <span>背景画像</span>
+          <image-upload
+            [max]="100"
+            [url]="'http://localhost:9000/api/images'"
+            [headers]="[
+    {header: 'Authorization', withCredentials: true}]"
+            [buttonCaption]="'背景画像'"
+            [dropBoxMessage]="'or ここにドロップ'"
+            [extensions]="['jpg','png','gif']"
+            (onFileUploadFinish)="backgroundImageUploaded($event)"
+          ></image-upload>
         </md-list-item>
       </div>
       <md-list-item>
