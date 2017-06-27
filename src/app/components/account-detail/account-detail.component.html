@@ -1,5 +1,4 @@
-<div class="account-header">
-</div>
+<img src={{account.backgroundImage}} class="account-header">
 <div class="account-navbar">
   <div class="container">
     <div class="account-header--container">
@@ -27,7 +26,7 @@
   </div>
 </div>
 <div class="container">
-  <div class="account-avatar"></div>
+  <img src={{account.avatar}} class="account-avatar">
   <div *ngIf="account" class="account-name">
     <h4>
       {{account.accountName}}

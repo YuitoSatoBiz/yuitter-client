@@ -62,7 +62,6 @@ import {ImageUploadModule} from 'angular2-image-upload';
     MdChipsModule,
     MdTabsModule,
     MdSelectModule,
-
     MdDialogModule
   ],
   declarations: [
