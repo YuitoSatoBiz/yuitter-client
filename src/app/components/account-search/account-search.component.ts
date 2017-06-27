@@ -30,4 +30,11 @@ export class AccountSearchComponent implements OnInit {
 
   onSubmit(searchForm: FormGroup): void {
   }
+
+  onKey(event: any): void {
+    this.accountService.search(event.target.value)
+      .then(accounts => {
+        this.accounts = accounts;
+      })
+  }
 }

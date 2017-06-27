@@ -65,4 +65,17 @@ export class AccountService {
       .then(account => account.json() as Account)
       .catch(AccountService.handleError);
   }
+
+  search(keyword: string): Promise<Account[]> {
+    return this.http
+      .post(
+        this.accountsUrl + '/search',
+        JSON.stringify({
+          keyword: keyword
+        }),
+        { headers: this.headers, withCredentials: true })
+      .toPromise()
+      .then(response => response.json() as Account[])
+      .catch(AccountService.handleError);
+  }
 }

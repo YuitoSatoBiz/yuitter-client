@@ -2,18 +2,14 @@
   <div class="time-line">
     <md-card>
       <md-card-header>
-        <form #f="ngForm" (ngSubmit)="onSubmit(f)" style="width: 100%;">
-          <div class="form-group mdl-textfield mdl-js-textfield">
-            <div style="display:inline-block;">
-              <i class="material-icons">search</i>
-            </div>
-            <div style="display:inline-block;">
-              <textarea name="keyword" ngModel class="form-control mdl-textfield__input" type="text" rows="1"
-                        placeholder="友達を見つけよう！" maxlength="140" required #keyword="ngModel"></textarea>
-              <label class="mdl-textfield__label"></label>
-            </div>
-          </div>
-        </form>
+        <div style="display:inline-block;">
+          <i class="material-icons">search</i>
+        </div>
+        <div style="display:inline-block;">
+              <textarea (keyup)="onKey($event)" class="mdl-textfield__input" type="text" rows="1"
+                        placeholder="友達を見つけよう！"></textarea>
+          <label class="mdl-textfield__label"></label>
+        </div>
       </md-card-header>
     </md-card>
     <md-list-item *ngFor="let account of accounts">
