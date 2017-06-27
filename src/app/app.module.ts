@@ -33,10 +33,12 @@ import {TweetUpdateFormComponent} from './components/tweet-update-form/tweet-upd
 import {TweetDeleteConfirmComponent} from './components/tweet-delete-confirm/tweet-delete-confirm.component';
 import {AccountDetailComponent} from './components/account-detail/account-detail.component';
 import {AccountService} from './services/account-service/account.service';
-import { MemberDetailComponent } from './components/member-detail/member-detail.component';
-import { AccountTweetListComponent } from './components/account-tweet-list/account-tweet-list.component';
-import { AccountFormComponent } from './components/account-form/account-form.component';
+import {MemberDetailComponent} from './components/member-detail/member-detail.component';
+import {AccountTweetListComponent} from './components/account-tweet-list/account-tweet-list.component';
+import {AccountFormComponent} from './components/account-form/account-form.component';
 import {AccountFollowingService} from './services/account-following-service/account-following.service';
+import {AccountSearchComponent} from './components/account-search/account-search.component';
+import {AccountCardComponent} from './components/account-card/account-card.component';
 
 @NgModule({
   imports: [
@@ -73,7 +75,9 @@ import {AccountFollowingService} from './services/account-following-service/acco
     AccountDetailComponent,
     MemberDetailComponent,
     AccountTweetListComponent,
-    AccountFormComponent
+    AccountFormComponent,
+    AccountSearchComponent,
+    AccountCardComponent
   ],
   providers: [
     TweetService,

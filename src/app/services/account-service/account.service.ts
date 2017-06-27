@@ -19,6 +19,13 @@ export class AccountService {
   constructor(private http: Http) {
   }
 
+  list(): Promise<Account[]> {
+    return this.http.get(this.accountsUrl, { withCredentials: true })
+      .toPromise()
+      .then(response => response.json() as Account[])
+      .catch(AccountService.handleError)
+  }
+
   find(accountId: number): Promise<Account> {
     return this.http.get(this.accountsUrl + '/' + accountId, { withCredentials: true })
       .toPromise()
@@ -56,6 +63,19 @@ export class AccountService {
         { headers: this.headers, withCredentials: true })
       .toPromise()
       .then(account => account.json() as Account)
+      .catch(AccountService.handleError);
+  }
+
+  search(keyword: string): Promise<Account[]> {
+    return this.http
+      .post(
+        this.accountsUrl + '/search',
+        JSON.stringify({
+          keyword: keyword
+        }),
+        { headers: this.headers, withCredentials: true })
+      .toPromise()
+      .then(response => response.json() as Account[])
       .catch(AccountService.handleError);
   }
 }

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="time-line">
+    <md-card>
+      <md-card-header>
+        <div style="display:inline-block;">
+          <i class="material-icons">search</i>
+        </div>
+        <div style="display:inline-block;">
+              <textarea (keyup)="onKey($event)" class="mdl-textfield__input" type="text" rows="1"
+                        placeholder="友達を見つけよう！"></textarea>
+          <label class="mdl-textfield__label"></label>
+        </div>
+      </md-card-header>
+    </md-card>
+    <md-list-item *ngFor="let account of accounts">
+      <app-account-card [account]="account"></app-account-card>
+    </md-list-item>
+  </div>
+</div>
