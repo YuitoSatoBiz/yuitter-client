@@ -6,7 +6,6 @@ import {TweetService} from '../../services/tweet-service/tweet.service';
 
 @Component({
   selector: 'app-tweet-update-form',
-  template: 'passed in {{data}}',
   templateUrl: './tweet-update-form.component.html',
   styleUrls: ['./tweet-update-form.component.css']
 })
