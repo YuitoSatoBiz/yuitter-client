@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Account} from '../../classes/account';
 
 @Component({
   selector: 'app-account-card',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() account: Account;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
