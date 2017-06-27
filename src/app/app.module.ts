@@ -27,17 +27,17 @@ import {SignInFormComponent} from './components/sign-in-form/sign-in-form.compon
 import {SessionService} from './services/session-service/session.service';
 import {SignUpFormComponent} from './components/sign-up-form/sign-up-form.component'
 import {MemberService} from './services/member-service/member.service';
-import {CookieService} from 'angular2-cookie/services/cookies.service';
+import {CookieService, CookieOptions} from 'angular2-cookie/core';
 import {MdDialogModule} from '@angular/material';
 import {TweetUpdateFormComponent} from './components/tweet-update-form/tweet-update-form.component';
 import {TweetDeleteConfirmComponent} from './components/tweet-delete-confirm/tweet-delete-confirm.component';
 import {AccountDetailComponent} from './components/account-detail/account-detail.component';
 import {AccountService} from './services/account-service/account.service';
-import { MemberDetailComponent } from './components/member-detail/member-detail.component';
-import { AccountTweetListComponent } from './components/account-tweet-list/account-tweet-list.component';
-import { AccountFormComponent } from './components/account-form/account-form.component';
-import { AccountSearchComponent } from './components/account-search/account-search.component';
-import { AccountCardComponent } from './components/account-card/account-card.component';
+import {MemberDetailComponent} from './components/member-detail/member-detail.component';
+import {AccountTweetListComponent} from './components/account-tweet-list/account-tweet-list.component';
+import {AccountFormComponent} from './components/account-form/account-form.component';
+import {AccountSearchComponent} from './components/account-search/account-search.component';
+import {AccountCardComponent} from './components/account-card/account-card.component';
 
 @NgModule({
   imports: [
@@ -83,6 +83,7 @@ import { AccountCardComponent } from './components/account-card/account-card.com
     SessionService,
     MemberService,
     AccountService,
+    { provide: CookieOptions, useValue: {} },
     CookieService
   ],
   entryComponents: [

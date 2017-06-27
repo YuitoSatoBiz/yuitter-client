@@ -11,8 +11,8 @@ export class MemberService {
   private headers = new Headers({
     'Content-Type': 'application/json',
   });
-  private membersUrl = 'http://localhost:9000/api/members';
-  private currentMemberUrl = 'http://localhost:9000/api/members/current';
+  private membersUrl = '/api/members';
+  private currentMemberUrl = '/api/members/current';
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
