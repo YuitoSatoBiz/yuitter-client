@@ -37,16 +37,17 @@ export class AccountDetailComponent implements OnInit {
     this.setTweets();
     this.setFollowers();
     this.setFollowees();
-    this.setCurrentId();
     this.followFlg = false;
   }
 
   follow(): void {
-    this.followFlg = true;
+    this.accountFollowingService.create(this.account.accountId)
+      .then(() => this.followFlg = true);
   }
 
   unfollow(): void {
-    this.followFlg = false;
+    this.accountFollowingService.delete(this.account.accountId)
+      .then(() => this.followFlg = false);
   }
 
   private handleError(error: any): Promise<any> {
@@ -78,13 +79,8 @@ export class AccountDetailComponent implements OnInit {
       .subscribe(followees => this.followees = followees);
   }
 
-  // private setCurrentId(): void {
-  //   this.currentAccountId = +this.cookieService.get('accountId')
-  // }
-
   private setFollowFlg(): void {
     this.accountFollowingService.find(this.account.accountId)
+      .then(followFlg => this.followFlg = followFlg)
   }
-
-  
 }

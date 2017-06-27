@@ -20,10 +20,29 @@ export class AccountFollowingService {
   }
 
   find(followeeId: number): Promise<boolean> {
-    return this.http.get(this.accountFollowingsUrl + '/' + followeeId, { withCredentials: true})
+    return this.http.get(this.accountFollowingsUrl + '/' + followeeId, { withCredentials: true })
       .toPromise()
-      .then(response => response.json()['result'])
+      .then(response => response.json())
       .catch(AccountFollowingService.handleError)
   }
 
+  create(followeeId: number): Promise<number> {
+    return this.http
+      .post(this.accountFollowingsUrl,
+        JSON.stringify({
+          followeeId: followeeId
+        }),
+        { headers: this.headers, withCredentials: true })
+      .toPromise()
+      .then(response => response.json())
+      .catch(AccountFollowingService.handleError)
+  }
+
+  delete(followeeId: number): Promise<number> {
+    return this.http
+      .delete(this.accountFollowingsUrl + '/' + followeeId, { withCredentials: true })
+      .toPromise()
+      .then(response => response.json())
+      .catch(AccountFollowingService.handleError)
+  }
 }
