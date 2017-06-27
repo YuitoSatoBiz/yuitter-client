@@ -6,6 +6,8 @@ import {AccountService} from '../../services/account-service/account.service';
 import {Account} from '../../classes/account';
 import {Tweet} from '../../classes/tweet';
 import {TweetService} from '../../services/tweet-service/tweet.service';
+import {CookieService} from 'angular2-cookie/core';
+import {AccountFollowingService} from '../../services/account-following-service/account-following.service';
 
 @Component({
   selector: 'app-account-detail',
@@ -18,12 +20,16 @@ export class AccountDetailComponent implements OnInit {
   tweets: Tweet[];
   followers: Account[];
   followees: Account[];
+  // currentAccountId: number;
   error: String;
+  followFlg: boolean;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
               private location: Location,
-              private tweetServie: TweetService) {
+              private tweetServie: TweetService,
+              private accountFollowingService: AccountFollowingService,
+              private cookieService: CookieService) {
   }
 
   ngOnInit() {
@@ -31,6 +37,17 @@ export class AccountDetailComponent implements OnInit {
     this.setTweets();
     this.setFollowers();
     this.setFollowees();
+    this.followFlg = false;
+  }
+
+  follow(): void {
+    this.accountFollowingService.create(this.account.accountId)
+      .then(() => this.followFlg = true);
+  }
+
+  unfollow(): void {
+    this.accountFollowingService.delete(this.account.accountId)
+      .then(() => this.followFlg = false);
   }
 
   private handleError(error: any): Promise<any> {
@@ -60,5 +77,10 @@ export class AccountDetailComponent implements OnInit {
     this.route.params
       .switchMap((params: Params) => this.accountService.listFollowees(+params['accountId']))
       .subscribe(followees => this.followees = followees);
+  }
+
+  private setFollowFlg(): void {
+    this.accountFollowingService.find(this.account.accountId)
+      .then(followFlg => this.followFlg = followFlg)
   }
 }

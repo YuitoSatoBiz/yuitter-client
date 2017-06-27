@@ -3,7 +3,7 @@
 <div class="account-navbar">
   <div class="container">
     <div class="account-header--container">
-      <div class="mdl-grid" style="width: 50%; margin-left: 0;">
+      <div class="mdl-grid">
         <div *ngIf="tweets" class="account-header--content">
           <span>ツイート</span><br>
           <span>{{tweets.length}}</span>
@@ -15,6 +15,12 @@
         <div *ngIf="followers" class="account-header--content">
           <span>フォロワー</span><br>
           <span>{{this.followers.length}}</span>
+        </div>
+        <div *ngIf="followFlg" class="account-header--content" style="margin-left:190px;margin-top:4px;">
+          <button (click)="unfollow()" md-raised-button color="accent">フォロー中</button>
+        </div>
+        <div *ngIf="!followFlg" class="account-header--content" style="margin-left:190px;margin-top:4px;">
+          <button (click)="follow()" md-raised-button>フォローする</button>
         </div>
       </div>
     </div>
