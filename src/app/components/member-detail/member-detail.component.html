@@ -41,7 +41,7 @@
             <span>{{account.accountName}}</span>
           </ng-template>
         </div>
-        <app-account-tweet-list [tweets]="tweets" [currentAccountIds]="currentAccountIds"
+        <app-account-tweet-list [currentAccount]="currentAccount" [tweets]="tweets" [currentAccountIds]="currentAccountIds"
                                 [account]="account"></app-account-tweet-list>
       </md-tab>
     </md-tab-group>

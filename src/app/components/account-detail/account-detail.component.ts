@@ -19,6 +19,7 @@ export class AccountDetailComponent implements OnInit {
 
   accountIds: number[];
   account: Account;
+  currentAccount: Account;
   tweets: Tweet[];
   followers: Account[];
   followees: Account[];
@@ -36,6 +37,7 @@ export class AccountDetailComponent implements OnInit {
   ngOnInit() {
     this.setAccountIds();
     this.setAccount();
+    this.setCurrentAccount();
     this.setTweets();
     this.setFollowers();
     this.setFollowees();
@@ -68,6 +70,11 @@ export class AccountDetailComponent implements OnInit {
     this.route.params
       .switchMap((params: Params) => this.accountService.find(+params['accountId']))
       .subscribe(account => this.account = account);
+  }
+
+  private setCurrentAccount(): void {
+    this.accountService.find(+this.cookieService.get('accountId'))
+      .then(account => this.currentAccount = account);
   }
 
   private setTweets(): void {

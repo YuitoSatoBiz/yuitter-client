@@ -36,9 +36,9 @@
       {{account.accountName}}
     </h4>
   </div>
-  <div *ngIf="tweets" class="tweets-list">
+  <div *ngIf="tweets && currentAccount" class="tweets-list">
     <md-list-item *ngFor="let tweet of tweets">
-      <app-tweet-card [tweet]="tweet"></app-tweet-card>
+      <app-tweet-card [currentAccount]="currentAccount" [tweet]="tweet"></app-tweet-card>
     </md-list-item>
   </div>
 </div>

@@ -1,14 +1,14 @@
 <md-card *ngIf="tweet">
   <md-card-header>
-    <img (click)="toAccountDetail()" md-card-avatar src={{tweet.accounts[0].avatar}}>
-    <md-card-title (click)="toAccountDetail()">{{tweet.accounts[0].accountName}}</md-card-title>
+    <img (click)="toAccountDetail()" md-card-avatar src={{tweetAccount.avatar}}>
+    <md-card-title (click)="toAccountDetail()">{{tweetAccount.accountName}}</md-card-title>
   </md-card-header>
   <md-card-content>
     <p>
       {{tweet.tweetText}}
     </p>
   </md-card-content>
-  <div *ngIf="currentAccountIds && currentAccountIds.indexOf(tweet.accounts[0].accountId) >= 0">
+  <div *ngIf="currentAccountIds && currentAccountIds.indexOf(tweetAccount.accountId) >= 0">
     <div class="mdl-card__menu">
       <button (click)="openTweetUpdateForm()" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
         <i class="material-icons">create</i>

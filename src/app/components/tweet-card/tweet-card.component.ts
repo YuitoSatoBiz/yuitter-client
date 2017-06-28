@@ -14,14 +14,18 @@ import {Router} from '@angular/router';
 })
 export class TweetCardComponent implements OnInit {
 
+  @Input() currentAccount: Account;
   @Input() currentAccountIds: number[];
   @Input() tweet: Tweet;
-  account: Account;
+  currentAccountId: number;
+  tweetAccount: Account;
 
   constructor(private dialog: MdDialog, private cookieService: CookieService, private router: Router) {
   }
 
   ngOnInit() {
+    this.setCurrentAccountId();
+    this.setTweetAcount();
   }
 
   openTweetUpdateForm(): void {
@@ -49,5 +53,18 @@ export class TweetCardComponent implements OnInit {
 
   toAccountDetail() {
     this.router.navigate(['/account/', this.tweet.accounts[0].accountId]);
+  }
+
+  private setCurrentAccountId() {
+    this.currentAccountId = +this.cookieService.get('accountId');
+  }
+
+  private setTweetAcount() {
+    const tweetAccountIds = this.tweet.accounts.map(a => a.accountId);
+    if (tweetAccountIds.indexOf(this.currentAccountId) >= 0) {
+      this.tweetAccount = this.currentAccount
+    } else {
+      this.tweetAccount = this.tweet.accounts[0]
+    }
   }
 }
