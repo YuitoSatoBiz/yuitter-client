@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MemberService} from '../../services/member-service/member.service'
+import {Member} from '../../classes/member';
+import {Account} from '../../classes/account';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -11,11 +13,15 @@ export class SignUpFormComponent implements OnInit {
   error: string;
   avatar: string;
   backgroundImage: string;
+  member: Member;
+  account: Account;
 
   constructor(private memberService: MemberService) {
   }
 
   ngOnInit() {
+    this.member = new Member(null, null, null, null);
+    this.account = new Account(null, null, null, null);
   }
 
   signUp(accountName: String, emailAddress: String, password: String): void {
@@ -32,8 +38,7 @@ export class SignUpFormComponent implements OnInit {
     this.backgroundImage = event.file.name;
   }
 
-  private handleError(error: any): Promise<any> {
-    this.error = JSON.parse(error._body)['error'];
-    return Promise.reject(error.message || error);
+  private handleError(error: any): Promise<void> {
+    return this.error = JSON.parse(error._body)['error'];
   }
 }

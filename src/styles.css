@@ -4,3 +4,9 @@ body {
   margin: 0;
   background: whitesmoke;
 }
+
+.alert {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}

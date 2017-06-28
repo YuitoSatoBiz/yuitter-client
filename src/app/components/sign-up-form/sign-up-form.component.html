@@ -12,24 +12,52 @@
       <div>
         <md-list-item>
           <md-input-container>
-            <input mdInput placeholder="Nickname" #accountName/>
+            <input mdInput placeholder="Nickname" #accountName="ngModel" [(ngModel)]="account.accountName" name="accountName" required maxlength="50"/>
           </md-input-container>
+          <div *ngIf="accountName.errors && (accountName.dirty || accountName.touched)"
+               class="alert">
+            <div [hidden]="!accountName.errors.required">
+              メールアドレスを入力してください。
+            </div>
+            <div [hidden]="!accountName.errors.maxlength">
+              メールアドレスは50文字以下です。
+            </div>
+          </div>
         </md-list-item>
       </div>
       <div>
         <md-list-item>
           <md-input-container>
-            <input mdInput placeholder="Email Address" style="width:550px;" #emailAddress/>
+            <input mdInput placeholder="Email Address" #emailAddress="ngModel" [(ngModel)]="member.emailAddress" name="emailAddress" required  maxlength="50" style="width:550px;"/>
           </md-input-container>
+          <div *ngIf="emailAddress.errors && (emailAddress.dirty || emailAddress.touched)"
+               class="alert">
+            <div [hidden]="!emailAddress.errors.required">
+              メールアドレスを入力してください。
+            </div>
+            <div [hidden]="!emailAddress.errors.maxlength">
+              メールアドレスは50文字以下です。
+            </div>
+          </div>
         </md-list-item>
       </div>
       <div>
         <md-list-item>
           <md-input-container>
-            <input mdInput placeholder="Password" #password type="password"/>
+            <input mdInput placeholder="Password" #password="ngModel" [(ngModel)]="member.password" type="password" name="password" required minlength="8"/>
           </md-input-container>
+          <div *ngIf="password.errors && (password.dirty || password.touched)"
+               class="alert">
+            <div [hidden]="!password.errors.required">
+              パスワードを入力してください。
+            </div>
+            <div [hidden]="!password.errors.minlength">
+              パスワードは8文字以上必要です。
+            </div>
+          </div>
         </md-list-item>
       </div>
+
       <div class="image-input">
         <md-list-item>
           <image-upload
@@ -61,6 +89,7 @@
       <md-list-item>
         <button
           (click)="signUp(accountName.value, emailAddress.value, password.value)"
+          [disabled]="!accountName.valid || !emailAddress.valid || !password.valid"
           md-raised-button
           color="primary">
           サインアップ

@@ -8,5 +8,4 @@ export class Tweet {
               public versionNo: number,
               public accounts: Account[]) {
   }
-
 }
