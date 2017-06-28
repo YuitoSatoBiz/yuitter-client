@@ -10,6 +10,7 @@ export class SessionService {
     'Content-Type': 'application/json',
   });
   private signInUrl = '/api/sign_in';
+  private signOutUrl = '/api/sign_out';
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -26,8 +27,16 @@ export class SessionService {
         { headers: this.headers, withCredentials: true }
       )
       .toPromise()
-      .then(response =>
-        this.router.navigate(['/time-line'])
-      ).catch(SessionService.handleError)
+      .then(response => this.router.navigate(['/time-line']))
+      .catch(SessionService.handleError);
+  }
+
+  delete(): Promise<void> {
+    return this.http
+      .get(this.signOutUrl,
+        { withCredentials: true })
+      .toPromise()
+      .then(response => response.json())
+      .catch(SessionService.handleError);
   }
 }
