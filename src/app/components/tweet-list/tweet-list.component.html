@@ -4,17 +4,32 @@
       <form #f="ngForm" ngForm (ngSubmit)="onSubmit(f)" style="width: 100%;">
         <div class="mdl-grid">
           <div class="form-group mdl-textfield mdl-js-textfield mdl-cell mdl-cell--8-col">
-            <textarea name="tweetText" ngModel class="form-control mdl-textfield__input" type="text" rows="5"
+            <textarea name="tweetText" [(ngModel)]="tweet.tweetText" class="form-control mdl-textfield__input" type="text" rows="5"
                       placeholder="今何してる？" maxlength="140" required #tweetText="ngModel"></textarea>
             <label class="mdl-textfield__label"></label>
+            <div class="alert" *ngIf="error">
+              {{error}}
+            </div>
+            <div *ngIf="tweetText.errors && (tweetText.dirty || tweetText.touched)"
+                 class="alert">
+              <div [hidden]="!tweetText.errors.required">
+                ツイートを入力してください。
+              </div>
+              <div [hidden]="!tweetText.errors.maxlength">
+                140文字以上のツイートは送信できません。
+              </div>
+              <div [hidden]="!accountId.errors.required">
+                ツイートするアカウントを選んでください。
+              </div>
+            </div>
           </div>
           <div class=" mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
-            <md-select placeholder="アカウント" [(ngModel)]="selectedValue" name="accountId">
+            <md-select placeholder="アカウント" [(ngModel)]="selectedValue" required name="accountId">
               <md-option *ngFor="let option of options" [value]="option.accountId">
                 {{option.name}}
               </md-option>
             </md-select>
-            <button type="submit" md-raised-button color="accent" style="margin-top:15px;">
+            <button type="submit" md-raised-button color="accent" style="margin-top:15px;" [disabled]="!tweetText.valid">
               ツイート
             </button>
           </div>
