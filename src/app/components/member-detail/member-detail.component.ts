@@ -21,8 +21,8 @@ export class MemberDetailComponent implements OnInit {
   currentAccount: Account;
   currentAccountIds: number[];
   tweets: Tweet[];
-  followers: Account[];
-  followees: Account[];
+  followersCount: number;
+  followeesCount: number;
 
 
   static handleError(error: any): Promise<any> {
@@ -38,6 +38,8 @@ export class MemberDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.followersCount = 0;
+    this.followeesCount = 0;
     this.setCurrentMember();
   }
 
@@ -85,14 +87,14 @@ export class MemberDetailComponent implements OnInit {
 
   private setFollowers(): void {
     this.accountService.listFollowers(this.currentAccount.accountId)
-      .then(followers => this.followers = followers)
+      .then(followers => this.followersCount = followers.length - 1)
       .catch(MemberDetailComponent.handleError)
 
   }
 
   private setFollowees(): void {
     this.accountService.listFollowees(this.currentAccount.accountId)
-      .then(followees => this.followees = followees)
+      .then(followees => this.followeesCount = followees.length - 1)
       .catch(MemberDetailComponent.handleError)
   }
 }

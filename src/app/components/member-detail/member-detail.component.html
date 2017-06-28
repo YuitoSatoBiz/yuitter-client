@@ -7,13 +7,13 @@
           <span>ツイート</span><br>
           <span>{{tweets.length}}</span>
         </div>
-        <div *ngIf="followees" class="account-header--content">
+        <div class="account-header--content">
           <span>フォロー</span><br>
-          <span>{{this.followees.length}}</span>
+          <span>{{this.followeesCount}}</span>
         </div>
-        <div *ngIf="followers" class="account-header--content">
+        <div class="account-header--content">
           <span>フォロワー</span><br>
-          <span>{{this.followers.length}}</span>
+          <span>{{this.followersCount}}</span>
         </div>
         <div class="account-header--content" style="margin-left:190px;margin-top:4px;">
           <button (click)="openAccountForm()" md-raised-button color="accent">アカウント追加</button>

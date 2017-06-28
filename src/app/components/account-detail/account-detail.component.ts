@@ -21,8 +21,8 @@ export class AccountDetailComponent implements OnInit {
   account: Account;
   currentAccount: Account;
   tweets: Tweet[];
-  followers: Account[];
-  followees: Account[];
+  followersCount: number;
+  followeesCount: number;
   error: String;
   followFlg: boolean;
 
@@ -35,6 +35,8 @@ export class AccountDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.followersCount = 0;
+    this.followeesCount = 0;
     this.setAccountIds();
     this.setAccount();
     this.setCurrentAccount();
@@ -46,12 +48,18 @@ export class AccountDetailComponent implements OnInit {
 
   follow(): void {
     this.accountFollowingService.create(this.account.accountId)
-      .then(() => this.followFlg = true);
+      .then(() => {
+        this.followFlg = true;
+        this.followersCount++;
+      });
   }
 
   unfollow(): void {
-    this.accountFollowingService.delete(this.account.accountId)
-      .then(() => this.followFlg = false);
+    this.accountFollowingService.remove(this.account.accountId)
+      .then(() => {
+        this.followFlg = false;
+        this.followersCount--;
+      });
   }
 
   private handleError(error: any): Promise<any> {
@@ -86,23 +94,21 @@ export class AccountDetailComponent implements OnInit {
   private setFollowers(): void {
     this.route.params
       .switchMap((params: Params) => this.accountService.listFollowers(+params['accountId']))
-      .subscribe(followers => this.followers = followers);
+      .subscribe(followers => this.followersCount = followers.length - 1);
   }
 
   private setFollowees(): void {
     this.route.params
       .switchMap((params: Params) => this.accountService.listFollowees(+params['accountId']))
-      .subscribe(followees => this.followees = followees);
+      .subscribe(followees => this.followeesCount = followees.length - 1);
   }
 
   private setFollowFlg(): void {
     this.route.params
       .switchMap((params: Params) => this.accountFollowingService.find(+params['accountId']))
-      .subscribe(followFlg => this.followFlg = followFlg);
-    // console.log(this.followFlg);
-    // console.log(this.account.accountId);
-    // this.accountFollowingService.find(this.account.accountId)
-    //   .then(followFlg => this.followFlg = followFlg);
-    // console.log(this.followFlg);
+      .subscribe(followFlg => {
+        console.log(followFlg);
+        this.followFlg = followFlg;
+      });
   }
 }

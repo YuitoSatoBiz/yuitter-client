@@ -22,7 +22,7 @@ export class AccountFollowingService {
   find(followeeId: number): Promise<boolean> {
     return this.http.get(this.accountFollowingsUrl + '/' + followeeId, { withCredentials: true })
       .toPromise()
-      .then(response => response.json())
+      .then(response => response.json().result as boolean)
       .catch(AccountFollowingService.handleError)
   }
 
@@ -38,7 +38,7 @@ export class AccountFollowingService {
       .catch(AccountFollowingService.handleError)
   }
 
-  delete(followeeId: number): Promise<number> {
+  remove(followeeId: number): Promise<number> {
     return this.http
       .delete(this.accountFollowingsUrl + '/' + followeeId, { withCredentials: true })
       .toPromise()
