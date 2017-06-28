@@ -9,8 +9,8 @@ export class AccountService {
   private headers = new Headers({
     'Content-Type': 'application/json',
   });
-  private accountsUrl = 'http://localhost:9000/api/accounts';
-  private assetsUrl = 'http://localhost:9000/assets/images/';
+  private accountsUrl = '/api/accounts';
+  private assetsUrl = '/api/assets/images/';
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);

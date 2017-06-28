@@ -9,7 +9,7 @@ export class AccountFollowingService {
   private headers = new Headers({
     'Content-Type': 'application/json',
   });
-  private accountFollowingsUrl = 'http://localhost:9000/api/account_followings';
+  private accountFollowingsUrl = '/api/account_followings';
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);

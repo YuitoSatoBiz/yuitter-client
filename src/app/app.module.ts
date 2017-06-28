@@ -20,7 +20,6 @@ import {HeaderComponent} from './components/header/header.component';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import {TweetListComponent} from './components/tweet-list/tweet-list.component';
 import {TweetCardComponent} from './components/tweet-card/tweet-card.component';
-import {HttpModule} from '@angular/http';
 import {TweetService} from './services/tweet-service/tweet.service';
 import {FormsModule} from '@angular/forms';
 import {SignInFormComponent} from './components/sign-in-form/sign-in-form.component';
@@ -40,6 +39,12 @@ import {AccountFollowingService} from './services/account-following-service/acco
 import {AccountSearchComponent} from './components/account-search/account-search.component';
 import {AccountCardComponent} from './components/account-card/account-card.component';
 import {ImageUploadModule} from 'angular2-image-upload';
+import {CookieXSRFStrategy, HttpModule, XSRFStrategy} from '@angular/http';
+
+
+export function cookieStrategy() {
+  return new CookieXSRFStrategy('csrfToken', 'X-CSRFToken');
+}
 
 @NgModule({
   imports: [
@@ -86,6 +91,8 @@ import {ImageUploadModule} from 'angular2-image-upload';
     SessionService,
     MemberService,
     AccountService,
+    HttpModule,
+    { provide: XSRFStrategy, useFactory: cookieStrategy},
     { provide: CookieOptions, useValue: {} },
     AccountFollowingService,
     CookieService
@@ -97,5 +104,6 @@ import {ImageUploadModule} from 'angular2-image-upload';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }
