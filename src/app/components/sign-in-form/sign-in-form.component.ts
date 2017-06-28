@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SessionService} from '../../services/session-service/session.service'
+import {Member} from '../../classes/member';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -9,11 +10,13 @@ import {SessionService} from '../../services/session-service/session.service'
 export class SignInFormComponent implements OnInit {
 
   error: String;
+  member: Member;
 
   constructor(private sessionService: SessionService) {
   }
 
   ngOnInit() {
+    this.member = new Member(null, null, null, null)
   }
 
   signIn(emailAddress: String, password: String): void {
@@ -22,8 +25,7 @@ export class SignInFormComponent implements OnInit {
       .catch(e => this.handleError(e));
   }
 
-  private handleError(error: any): Promise<any> {
-    this.error = JSON.parse(error._body)['error'];
-    return Promise.reject(error.message || error);
+  private handleError(error: any): Promise<void> {
+    return this.error = JSON.parse(error._body)['error'];
   }
 }

@@ -15,11 +15,6 @@ export class MemberService {
   private membersUrl = '/api/members';
   private currentMemberUrl = '/api/members/current';
 
-  private static handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
-  }
-
   constructor(private http: Http, private router: Router, private sessionService: SessionService) {
   }
 
@@ -44,7 +39,7 @@ export class MemberService {
       .toPromise()
       .then(response =>
         this.sessionService.create(emailAddress, password)
-      ).catch(MemberService.handleError)
+      );
   }
 
   findCurrent(): Promise<Member> {
@@ -54,7 +49,6 @@ export class MemberService {
       .then(response =>
         response.json() as Member
       ).catch( e => {
-        MemberService.handleError(e);
         this.router.navigate(['/sign-in']);
       })
   }

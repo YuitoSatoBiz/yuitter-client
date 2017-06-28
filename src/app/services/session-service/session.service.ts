@@ -12,11 +12,6 @@ export class SessionService {
   private signInUrl = '/api/sign_in';
   private signOutUrl = '/api/sign_out';
 
-  private static handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
-  }
-
   constructor(private http: Http, private router: Router) {
   }
 
@@ -27,16 +22,16 @@ export class SessionService {
         { headers: this.headers, withCredentials: true }
       )
       .toPromise()
-      .then(response => this.router.navigate(['/time-line']))
-      .catch(SessionService.handleError);
+      .then(response => {
+        this.router.navigate(['/time-line']);
+      })
   }
 
-  delete(): Promise<void> {
+  remove(): Promise<void> {
     return this.http
       .get(this.signOutUrl,
         { withCredentials: true })
       .toPromise()
       .then(response => response.json())
-      .catch(SessionService.handleError);
   }
 }

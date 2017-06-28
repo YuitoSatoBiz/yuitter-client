@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   }
 
   signOut(): void {
-    this.sessionService.delete()
+    this.sessionService.remove()
       .then(() => this.router.navigate(['/sign-in']))
   }
 }

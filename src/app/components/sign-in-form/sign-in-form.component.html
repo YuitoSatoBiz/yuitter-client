@@ -11,20 +11,36 @@
     <md-list>
       <div>
         <md-list-item>
-          <md-input-container style="width:550px;">
-            <input mdInput placeholder="Email Address" #emailAddress/>
+          <md-input-container>
+            <input mdInput placeholder="Email Address" #emailAddress="ngModel" [(ngModel)]="member.emailAddress" name="emailAddress" required  maxlength="50" style="width:550px;"/>
           </md-input-container>
+          <div *ngIf="emailAddress.errors && (emailAddress.dirty || emailAddress.touched)"
+               class="alert">
+            <div [hidden]="!emailAddress.errors.required">
+              メールアドレスを入力してください。
+            </div>
+            <div [hidden]="!emailAddress.errors.maxlength">
+              メールアドレスは50文字以下です。
+            </div>
+          </div>
         </md-list-item>
       </div>
       <div>
-        <md-list-item>
-          <md-input-container>
-            <input mdInput placeholder="Password" #password type="password"/>
-          </md-input-container>
-        </md-list-item>
+        <md-input-container>
+          <input mdInput placeholder="Password" #password="ngModel" [(ngModel)]="member.password" type="password" name="password" required minlength="8"/>
+        </md-input-container>
+        <div *ngIf="password.errors && (password.dirty || password.touched)"
+             class="alert">
+          <div [hidden]="!password.errors.required">
+            パスワードを入力してください。
+          </div>
+          <div [hidden]="!password.errors.minlength">
+            パスワードは8文字以上必要です。
+          </div>
+        </div>
       </div>
       <md-list-item>
-        <button (click)="signIn(emailAddress.value, password.value)" md-raised-button color="primary">
+        <button (click)="signIn(emailAddress.value, password.value)" md-raised-button color="primary" [disabled]="!emailAddress.valid || !password.valid">
           サインイン
         </button>
         <a routerLink="/sign-up">or 新規登録</a>
