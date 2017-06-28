@@ -1,6 +1,8 @@
 export class Account {
-  accountId: number;
-  accountName: string;
-  avatar: string;
-  backgroundImage: string;
+
+  constructor(public accountId: number,
+              public accountName: string,
+              public avatar: string,
+              public backgroundImage: string) {
+  }
 }
