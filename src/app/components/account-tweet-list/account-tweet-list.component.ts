@@ -12,6 +12,7 @@ import {AccountService} from '../../services/account-service/account.service';
 export class AccountTweetListComponent implements OnInit {
 
   @Input() account: Account;
+  @Input() currentAccount: Account;
   @Input() currentAccountIds: number[];
   @Input() tweets: Tweet[];
 

@@ -20,14 +20,13 @@ import {HeaderComponent} from './components/header/header.component';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import {TweetListComponent} from './components/tweet-list/tweet-list.component';
 import {TweetCardComponent} from './components/tweet-card/tweet-card.component';
-import {HttpModule} from '@angular/http';
 import {TweetService} from './services/tweet-service/tweet.service';
 import {FormsModule} from '@angular/forms';
 import {SignInFormComponent} from './components/sign-in-form/sign-in-form.component';
 import {SessionService} from './services/session-service/session.service';
 import {SignUpFormComponent} from './components/sign-up-form/sign-up-form.component'
 import {MemberService} from './services/member-service/member.service';
-import {CookieService} from 'angular2-cookie/services/cookies.service';
+import {CookieService, CookieOptions} from 'angular2-cookie/core';
 import {MdDialogModule} from '@angular/material';
 import {TweetUpdateFormComponent} from './components/tweet-update-form/tweet-update-form.component';
 import {TweetDeleteConfirmComponent} from './components/tweet-delete-confirm/tweet-delete-confirm.component';
@@ -39,6 +38,13 @@ import {AccountFormComponent} from './components/account-form/account-form.compo
 import {AccountFollowingService} from './services/account-following-service/account-following.service';
 import {AccountSearchComponent} from './components/account-search/account-search.component';
 import {AccountCardComponent} from './components/account-card/account-card.component';
+import {ImageUploadModule} from 'angular2-image-upload';
+import {CookieXSRFStrategy, HttpModule, XSRFStrategy} from '@angular/http';
+
+
+export function cookieStrategy() {
+  return new CookieXSRFStrategy('csrfToken', 'X-CSRFToken');
+}
 
 @NgModule({
   imports: [
@@ -47,6 +53,7 @@ import {AccountCardComponent} from './components/account-card/account-card.compo
     AppRoutingModule,
     HttpModule,
     FormsModule,
+    ImageUploadModule.forRoot(),
     MdButtonModule,
     MdCheckboxModule,
     MdButtonModule,
@@ -84,6 +91,9 @@ import {AccountCardComponent} from './components/account-card/account-card.compo
     SessionService,
     MemberService,
     AccountService,
+    HttpModule,
+    { provide: XSRFStrategy, useFactory: cookieStrategy},
+    { provide: CookieOptions, useValue: {} },
     AccountFollowingService,
     CookieService
   ],
@@ -94,5 +104,6 @@ import {AccountCardComponent} from './components/account-card/account-card.compo
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

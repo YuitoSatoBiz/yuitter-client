@@ -9,7 +9,8 @@ export class AccountService {
   private headers = new Headers({
     'Content-Type': 'application/json',
   });
-  private accountsUrl = 'http://localhost:9000/api/accounts';
+  private accountsUrl = '/api/accounts';
+  private assetsUrl = '/api/assets/images/';
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -53,12 +54,22 @@ export class AccountService {
       .catch(AccountService.handleError);
   }
 
-  create(accountName: string): Promise<Account> {
+  create(accountName: string, avatar: string, backgroundImage: string): Promise<Account> {
+    let avatarPath: string;
+    if (avatar != null) {
+      avatarPath = this.assetsUrl + avatar;
+    }
+    let backgroundImagePath: string;
+    if (backgroundImage != null) {
+      backgroundImagePath = this.assetsUrl + backgroundImage;
+    }
     return this.http
       .post(
         this.accountsUrl,
         JSON.stringify({
-          accountName: accountName
+          accountName: accountName,
+          avatar: avatarPath,
+          backgroundImage: backgroundImagePath
         }),
         { headers: this.headers, withCredentials: true })
       .toPromise()

@@ -1,19 +1,17 @@
 <div class="container">
   <md-card>
     <md-card-header>
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" style="width: 100%;">
+      <form #f="ngForm" ngForm (ngSubmit)="onSubmit(f)" style="width: 100%;">
         <div class="mdl-grid">
           <div class="form-group mdl-textfield mdl-js-textfield mdl-cell mdl-cell--8-col">
-            <textarea name="tweetText" ngModel class="form-control mdl-textfield__input" type="text" rows="5" placeholder="今何してる？" maxlength="140" required #tweetText="ngModel"></textarea>
+            <textarea name="tweetText" ngModel class="form-control mdl-textfield__input" type="text" rows="5"
+                      placeholder="今何してる？" maxlength="140" required #tweetText="ngModel"></textarea>
             <label class="mdl-textfield__label"></label>
           </div>
           <div class=" mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
-            <md-select name="accountIds" ngModel class="form-group" #accounts="ngModel" placeholder="アカウント" required>
-              <md-option [value]="[account.accountId]" >
-                {{account.accountName}}
-              </md-option>
-              <md-option [value]="accountIds">
-                全てのアカウントでつぶやく
+            <md-select placeholder="アカウント" [(ngModel)]="selectedValue" name="accountId">
+              <md-option *ngFor="let option of options" [value]="option.accountId">
+                {{option.name}}
               </md-option>
             </md-select>
             <button type="submit" md-raised-button color="accent" style="margin-top:15px;">
@@ -25,6 +23,6 @@
     </md-card-header>
   </md-card>
   <md-list-item *ngFor="let tweet of tweets">
-    <app-tweet-card [currentAccountIds]="currentAccountIds" [tweet]="tweet"></app-tweet-card>
+    <app-tweet-card [currentAccount]="currentAccount" [currentAccountIds]="currentAccountIds" [tweet]="tweet"></app-tweet-card>
   </md-list-item>
 </div>

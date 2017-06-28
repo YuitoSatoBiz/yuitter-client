@@ -1,7 +1,7 @@
 <md-card *ngIf="account">
   <md-card-header>
     <a routerLink="/account/{{account.accountId}}" style="text-decoration:none;">
-      <img md-card-avatar src="../../../assets/public/aaa.jpg">
+      <img md-card-avatar src={{account.avatar}}>
     </a>
     <a routerLink="/account/{{account.accountId}}" style="text-decoration:none;color:black;">
       <md-card-title>　{{account.accountName}}</md-card-title>

@@ -8,6 +8,7 @@ import {Tweet} from '../../classes/tweet';
 import {TweetService} from '../../services/tweet-service/tweet.service';
 import {CookieService} from 'angular2-cookie/core';
 import {AccountFollowingService} from '../../services/account-following-service/account-following.service';
+import {MemberService} from '../../services/member-service/member.service';
 
 @Component({
   selector: 'app-account-detail',
@@ -16,38 +17,49 @@ import {AccountFollowingService} from '../../services/account-following-service/
 })
 export class AccountDetailComponent implements OnInit {
 
+  accountIds: number[];
   account: Account;
+  currentAccount: Account;
   tweets: Tweet[];
-  followers: Account[];
-  followees: Account[];
-  // currentAccountId: number;
+  followersCount: number;
+  followeesCount: number;
   error: String;
   followFlg: boolean;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
-              private location: Location,
+              private memberService: MemberService,
               private tweetServie: TweetService,
               private accountFollowingService: AccountFollowingService,
               private cookieService: CookieService) {
   }
 
   ngOnInit() {
+    this.followersCount = 0;
+    this.followeesCount = 0;
+    this.setAccountIds();
     this.setAccount();
+    this.setCurrentAccount();
     this.setTweets();
     this.setFollowers();
     this.setFollowees();
-    this.followFlg = false;
+    this.setFollowFlg();
   }
 
   follow(): void {
     this.accountFollowingService.create(this.account.accountId)
-      .then(() => this.followFlg = true);
+      .then(() => {
+        this.followFlg = true;
+        this.followersCount++;
+      });
   }
 
   unfollow(): void {
-    this.accountFollowingService.delete(this.account.accountId)
-      .then(() => this.followFlg = false);
+    this.accountFollowingService.remove(this.account.accountId)
+      .then(() => {
+        this.followFlg = false;
+        this.followersCount--;
+      });
   }
 
   private handleError(error: any): Promise<any> {
@@ -55,10 +67,22 @@ export class AccountDetailComponent implements OnInit {
     return Promise.reject(error.message || error);
   }
 
+  private setAccountIds(): void {
+    this.memberService.findCurrent()
+      .then(member => {
+        this.accountIds = member.accounts.map(a => a.accountId);
+      });
+  }
+
   private setAccount(): void {
     this.route.params
       .switchMap((params: Params) => this.accountService.find(+params['accountId']))
       .subscribe(account => this.account = account);
+  }
+
+  private setCurrentAccount(): void {
+    this.accountService.find(+this.cookieService.get('accountId'))
+      .then(account => this.currentAccount = account);
   }
 
   private setTweets(): void {
@@ -70,17 +94,21 @@ export class AccountDetailComponent implements OnInit {
   private setFollowers(): void {
     this.route.params
       .switchMap((params: Params) => this.accountService.listFollowers(+params['accountId']))
-      .subscribe(followers => this.followers = followers);
+      .subscribe(followers => this.followersCount = followers.length - 1);
   }
 
   private setFollowees(): void {
     this.route.params
       .switchMap((params: Params) => this.accountService.listFollowees(+params['accountId']))
-      .subscribe(followees => this.followees = followees);
+      .subscribe(followees => this.followeesCount = followees.length - 1);
   }
 
   private setFollowFlg(): void {
-    this.accountFollowingService.find(this.account.accountId)
-      .then(followFlg => this.followFlg = followFlg)
+    this.route.params
+      .switchMap((params: Params) => this.accountFollowingService.find(+params['accountId']))
+      .subscribe(followFlg => {
+        console.log(followFlg);
+        this.followFlg = followFlg;
+      });
   }
 }

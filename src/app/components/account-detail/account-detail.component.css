@@ -6,6 +6,7 @@
 
 .account-header {
   height: 280px;
+  width: 100%;
   background-color: aquamarine;
   margin-top: -10px;
 }

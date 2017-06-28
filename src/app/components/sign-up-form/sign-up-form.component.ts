@@ -8,7 +8,9 @@ import {MemberService} from '../../services/member-service/member.service'
 })
 export class SignUpFormComponent implements OnInit {
 
-  error: String;
+  error: string;
+  avatar: string;
+  backgroundImage: string;
 
   constructor(private memberService: MemberService) {
   }
@@ -16,10 +18,18 @@ export class SignUpFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  signUp(accountName: String, emailAddress: String, password: String, avatar: String, backgroundImage: String): void {
-    this.memberService.create(accountName, emailAddress, password)
+  signUp(accountName: String, emailAddress: String, password: String): void {
+    this.memberService.create(accountName, emailAddress, password, this.avatar, this.backgroundImage)
       .then(() => null)
       .catch(e => this.handleError(e))
+  }
+
+  avatarUploaded(event: any): void {
+    this.avatar = event.file.name;
+  }
+
+  backgroundImageUploaded(event: any): void {
+    this.backgroundImage = event.file.name;
   }
 
   private handleError(error: any): Promise<any> {

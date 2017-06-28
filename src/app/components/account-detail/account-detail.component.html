@@ -1,41 +1,44 @@
-<div class="account-header">
+<div *ngIf="account">
+  <img src={{account.backgroundImage}} class="account-header">
 </div>
 <div class="account-navbar">
   <div class="container">
     <div class="account-header--container">
-      <div class="mdl-grid">
+      <div *ngIf="account && accountIds && tweets" class="mdl-grid">
         <div *ngIf="tweets" class="account-header--content">
           <span>ツイート</span><br>
           <span>{{tweets.length}}</span>
         </div>
-        <div *ngIf="followees" class="account-header--content">
+        <div class="account-header--content">
           <span>フォロー</span><br>
-          <span>{{this.followees.length}}</span>
+          <span>{{followeesCount}}</span>
         </div>
-        <div *ngIf="followers" class="account-header--content">
+        <div class="account-header--content">
           <span>フォロワー</span><br>
-          <span>{{this.followers.length}}</span>
+          <span>{{followersCount}}</span>
         </div>
-        <div *ngIf="followFlg" class="account-header--content" style="margin-left:190px;margin-top:4px;">
-          <button (click)="unfollow()" md-raised-button color="accent">フォロー中</button>
-        </div>
-        <div *ngIf="!followFlg" class="account-header--content" style="margin-left:190px;margin-top:4px;">
-          <button (click)="follow()" md-raised-button>フォローする</button>
+        <div *ngIf="accountIds.indexOf(account.accountId) == -1">
+          <div *ngIf="followFlg" class="account-header--content" style="margin-left:190px;margin-top:4px;">
+            <button (click)="unfollow()" md-raised-button color="accent">フォロー中</button>
+          </div>
+          <div *ngIf="!followFlg" class="account-header--content" style="margin-left:190px;margin-top:4px;">
+            <button (click)="follow()" md-raised-button>フォローする</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="account-avatar"></div>
-  <div *ngIf="account" class="account-name">
+<div *ngIf="account" class="container">
+  <img src={{account.avatar}} class="account-avatar">
+  <div class="account-name">
     <h4>
       {{account.accountName}}
     </h4>
   </div>
-  <div *ngIf="tweets" class="tweets-list">
+  <div *ngIf="tweets && currentAccount" class="tweets-list">
     <md-list-item *ngFor="let tweet of tweets">
-      <app-tweet-card [tweet]="tweet"></app-tweet-card>
+      <app-tweet-card [currentAccount]="currentAccount" [tweet]="tweet"></app-tweet-card>
     </md-list-item>
   </div>
 </div>
