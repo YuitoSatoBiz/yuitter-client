@@ -8,6 +8,7 @@ import {Tweet} from '../../classes/tweet';
 import {TweetService} from '../../services/tweet-service/tweet.service';
 import {CookieService} from 'angular2-cookie/core';
 import {AccountFollowingService} from '../../services/account-following-service/account-following.service';
+import {MemberService} from '../../services/member-service/member.service';
 
 @Component({
   selector: 'app-account-detail',
@@ -16,28 +17,29 @@ import {AccountFollowingService} from '../../services/account-following-service/
 })
 export class AccountDetailComponent implements OnInit {
 
+  accountIds: number[];
   account: Account;
   tweets: Tweet[];
   followers: Account[];
   followees: Account[];
-  // currentAccountId: number;
   error: String;
   followFlg: boolean;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
-              private location: Location,
+              private memberService: MemberService,
               private tweetServie: TweetService,
               private accountFollowingService: AccountFollowingService,
               private cookieService: CookieService) {
   }
 
   ngOnInit() {
+    this.setAccountIds();
     this.setAccount();
     this.setTweets();
     this.setFollowers();
     this.setFollowees();
-    this.followFlg = false;
+    this.setFollowFlg();
   }
 
   follow(): void {
@@ -53,6 +55,13 @@ export class AccountDetailComponent implements OnInit {
   private handleError(error: any): Promise<any> {
     this.error = JSON.parse(error._body)['error'];
     return Promise.reject(error.message || error);
+  }
+
+  private setAccountIds(): void {
+    this.memberService.findCurrent()
+      .then(member => {
+        this.accountIds = member.accounts.map(a => a.accountId);
+      });
   }
 
   private setAccount(): void {
@@ -80,7 +89,13 @@ export class AccountDetailComponent implements OnInit {
   }
 
   private setFollowFlg(): void {
-    this.accountFollowingService.find(this.account.accountId)
-      .then(followFlg => this.followFlg = followFlg)
+    this.route.params
+      .switchMap((params: Params) => this.accountFollowingService.find(+params['accountId']))
+      .subscribe(followFlg => this.followFlg = followFlg);
+    // console.log(this.followFlg);
+    // console.log(this.account.accountId);
+    // this.accountFollowingService.find(this.account.accountId)
+    //   .then(followFlg => this.followFlg = followFlg);
+    // console.log(this.followFlg);
   }
 }

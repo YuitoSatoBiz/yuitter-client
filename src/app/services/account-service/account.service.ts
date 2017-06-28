@@ -69,7 +69,7 @@ export class AccountService {
         JSON.stringify({
           accountName: accountName,
           avatar: avatarPath,
-          backgroundImagePath: backgroundImagePath
+          backgroundImage: backgroundImagePath
         }),
         { headers: this.headers, withCredentials: true })
       .toPromise()

@@ -1,8 +1,10 @@
-<img src={{account.backgroundImage}} class="account-header">
+<div *ngIf="account">
+  <img src={{account.backgroundImage}} class="account-header">
+</div>
 <div class="account-navbar">
   <div class="container">
     <div class="account-header--container">
-      <div class="mdl-grid">
+      <div *ngIf="account && accountIds && tweets" class="mdl-grid">
         <div *ngIf="tweets" class="account-header--content">
           <span>ツイート</span><br>
           <span>{{tweets.length}}</span>
@@ -15,19 +17,21 @@
           <span>フォロワー</span><br>
           <span>{{this.followers.length}}</span>
         </div>
-        <div *ngIf="followFlg" class="account-header--content" style="margin-left:190px;margin-top:4px;">
-          <button (click)="unfollow()" md-raised-button color="accent">フォロー中</button>
-        </div>
-        <div *ngIf="!followFlg" class="account-header--content" style="margin-left:190px;margin-top:4px;">
-          <button (click)="follow()" md-raised-button>フォローする</button>
+        <div *ngIf="accountIds.indexOf(account.accountId) == -1">
+          <div *ngIf="followFlg" class="account-header--content" style="margin-left:190px;margin-top:4px;">
+            <button (click)="unfollow()" md-raised-button color="accent">フォロー中</button>
+          </div>
+          <div *ngIf="!followFlg" class="account-header--content" style="margin-left:190px;margin-top:4px;">
+            <button (click)="follow()" md-raised-button>フォローする</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="container">
+<div *ngIf="account" class="container">
   <img src={{account.avatar}} class="account-avatar">
-  <div *ngIf="account" class="account-name">
+  <div class="account-name">
     <h4>
       {{account.accountName}}
     </h4>
