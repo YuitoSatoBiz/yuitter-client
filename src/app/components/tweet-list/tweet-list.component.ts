@@ -56,9 +56,13 @@ export class TweetListComponent implements OnInit {
       this.tweetService.create(tweetForm.value.tweetText, accountIds)
         .then(tweet =>
           this.tweets.unshift(tweet)
-        );
+        ).catch(e => this.handleError(e));
     }
     tweetForm.reset({ accountId: this.account.accountId });
     this.selectedValue = this.options[0].accountId;
+  }
+
+  private handleError(error: any): Promise<void> {
+    return this.error = JSON.parse(error._body)['error'];
   }
 }

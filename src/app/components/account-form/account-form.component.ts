@@ -34,8 +34,7 @@ export class AccountFormComponent implements OnInit {
     this.backgroundImage = event.file.name;
   }
 
-  private handleError(error: any): Promise<any> {
-    this.error = JSON.parse(error._body)['error'];
-    return Promise.reject(error.message || error);
+  private handleError(error: any): Promise<void> {
+    return this.error = JSON.parse(error._body)['error'];
   }
 }
