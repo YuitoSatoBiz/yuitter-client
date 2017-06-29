@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpFormComponent },
   { path: 'account/:accountId', component: AccountDetailComponent },
   { path: 'my-page', component: MemberDetailComponent },
-  { path: 'account-search', component: AccountSearchComponent }
+  { path: 'user-search', component: AccountSearchComponent }
 ];
 
 @NgModule({
