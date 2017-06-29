@@ -19,16 +19,16 @@ export class TweetListComponent implements OnInit {
   tweets: Tweet[];
   accountIds: number[];
   error: string;
-  options: Array<{accountId: number, name: string}>;
+  options: Array<{ accountId: number, name: string }>;
   selectedValue: number;
 
   constructor(private tweetService: TweetService) {
   }
 
   getTweets(): void {
-    this.tweetService.list(this.account.accountId).then(tweets =>
-      this.tweets = tweets
-    )
+    this.tweetService.list(this.account.accountId)
+      .then(tweets => this.tweets = tweets)
+      .catch(e => this.handleError(e));
   }
 
   ngOnInit() {
@@ -36,8 +36,8 @@ export class TweetListComponent implements OnInit {
     this.getTweets();
     this.accountIds = this.accounts.map(a => a.accountId);
     this.options = [
-      {accountId: this.account.accountId, name: this.account.accountName},
-      {accountId: -1, name: '全てのアカウントに送る'}
+      { accountId: this.account.accountId, name: this.account.accountName },
+      { accountId: -1, name: '全てのアカウントに送る' }
     ];
     this.selectedValue = this.options[0].accountId;
   }

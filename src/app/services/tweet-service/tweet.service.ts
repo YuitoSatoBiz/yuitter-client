@@ -11,11 +11,6 @@ export class TweetService {
     'Content-Type': 'application/json',
   });
 
-  private static handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
-  }
-
   constructor(private http: Http) {
   }
 
@@ -23,16 +18,14 @@ export class TweetService {
     return this.http.get(this.tweetsUrl + '/' + accountId, { withCredentials: true })
       .toPromise()
       .then(response =>
-        response.json() as Tweet[])
-      .catch(TweetService.handleError);
+        response.json() as Tweet[]);
   }
 
   searchByAccountId(accountId: number): Promise<Tweet[]> {
     return this.http.get(this.tweetsUrl + '/search/' + accountId, {withCredentials: true})
       .toPromise()
       .then(response =>
-        response.json() as Tweet[])
-      .catch(TweetService.handleError);
+        response.json() as Tweet[]);
   }
 
   create(tweetText: string, accountIds: number[]): Promise<Tweet> {
@@ -46,8 +39,7 @@ export class TweetService {
         { headers: this.headers, withCredentials: true })
       .toPromise()
       .then(response =>
-        response.json() as Tweet)
-      .catch(TweetService.handleError)
+        response.json() as Tweet);
   }
 
   update(tweet: Tweet, tweetText: string): Promise<Tweet> {
@@ -61,8 +53,7 @@ export class TweetService {
         { headers: this.headers, withCredentials: true })
       .toPromise()
       .then(response =>
-        response.json() as Tweet)
-      .catch(TweetService.handleError)
+        response.json() as Tweet);
   }
 
   remove(tweetId: number): Promise<void> {
@@ -71,7 +62,6 @@ export class TweetService {
         this.tweetsUrl + '/' + tweetId,
         {withCredentials: true})
       .toPromise()
-      .then(response => response.json())
-      .catch(TweetService.handleError)
+      .then(response => response.json());
   }
 }
