@@ -1,4 +1,5 @@
-<img *ngIf="currentAccount" src={{currentAccount.backgroundImage}} class="account-header">
+<img *ngIf="currentAccount && currentAccount.backgroundImage" src={{currentAccount.backgroundImage}} class="account-header">
+<div *ngIf="!(currentAccount && currentAccount.backgroundImage)" class="account-header"></div>
 <div class="account-navbar">
   <div class="container">
     <div class="account-header--container">
@@ -23,7 +24,8 @@
   </div>
 </div>
 <div class="container">
-  <img *ngIf="currentAccount" src='assets/public/aaa.jpg' class="account-avatar">
+  <img *ngIf="currentAccount && currentAccount.avatar" src={{currentAccount.avatar}} class="account-avatar">
+  <img *ngIf="!(currentAccount && currentAccount.avatar)" src="/assets/img/default_egg.png" class="account-avatar">
   <div *ngIf="currentAccount" class="account-name">
     <h4>
       {{currentAccount.accountName}}

@@ -1,6 +1,7 @@
 <md-card *ngIf="tweet">
   <md-card-header>
-    <img (click)="toAccountDetail()" md-card-avatar src={{tweetAccount.avatar}}>
+    <img *ngIf="tweetAccount.avatar" (click)="toAccountDetail()" md-card-avatar src={{tweetAccount.avatar}}>
+    <img *ngIf="!tweetAccount.avatar" (click)="toAccountDetail()" md-card-avatar src="/assets/img/default_egg.png">
     <md-card-title (click)="toAccountDetail()">{{tweetAccount.accountName}}</md-card-title>
   </md-card-header>
   <md-card-content>
@@ -10,7 +11,7 @@
   </md-card-content>
   <div *ngIf="currentAccountIds && currentAccountIds.indexOf(tweetAccount.accountId) >= 0">
     <div class="mdl-card__menu">
-      <button (click)="openTweetUpdateForm()" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <button (click)="openTweetUpdateForm()" class="mdl- button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
         <i class="material-icons">create</i>
       </button>
       <button (click)="openTweetDeleteConfirm()" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
