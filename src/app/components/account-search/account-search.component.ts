@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../services/account-service/account.service';
 import {FormGroup} from '@angular/forms';
 import {Account} from '../../classes/account';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-account-search',
@@ -12,20 +13,15 @@ export class AccountSearchComponent implements OnInit {
 
   accounts: Account[];
 
-  static handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
-  }
-
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private router: Router) {
 
   }
 
   ngOnInit() {
     this.accountService.list()
       .then(accounts =>
-        this.accounts = accounts
-      )
+        this.accounts = accounts)
+      .catch(e => this.handleError(e));
   }
 
   onSubmit(searchForm: FormGroup): void {
@@ -36,5 +32,9 @@ export class AccountSearchComponent implements OnInit {
       .then(accounts => {
         this.accounts = accounts;
       })
+  }
+
+  private handleError(error: any) {
+    this.router.navigate(['/sign-in'])
   }
 }
