@@ -23,21 +23,13 @@ export class MemberService {
   }
 
   create(accountName: String, emailAddress: String, password: String, avatar: string, backgroundImage: string): Promise<void> {
-    let avatarPath: string;
-    if (avatar != null) {
-      avatarPath = this.assetsUrl + avatar;
-    }
-    let backgroundImagePath: string;
-    if (backgroundImage != null) {
-      backgroundImagePath = this.assetsUrl + backgroundImage;
-    }
     return this.http
       .post(
         this.membersUrl,
         JSON.stringify({
           emailAddress: emailAddress,
           password: password,
-          account: { accountName: accountName, avatar: avatarPath, backgroundImage: backgroundImagePath }
+          account: { accountName: accountName, avatar: avatar, backgroundImage: backgroundImage }
         }),
         { headers: this.headers })
       .toPromise()

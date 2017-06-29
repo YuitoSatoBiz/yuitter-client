@@ -55,21 +55,13 @@ export class AccountService {
   }
 
   create(accountName: string, avatar: string, backgroundImage: string): Promise<Account> {
-    let avatarPath: string;
-    if (avatar != null) {
-      avatarPath = this.assetsUrl + avatar;
-    }
-    let backgroundImagePath: string;
-    if (backgroundImage != null) {
-      backgroundImagePath = this.assetsUrl + backgroundImage;
-    }
     return this.http
       .post(
         this.accountsUrl,
         JSON.stringify({
           accountName: accountName,
-          avatar: avatarPath,
-          backgroundImage: backgroundImagePath
+          avatar: avatar,
+          backgroundImage: backgroundImage
         }),
         { headers: this.headers, withCredentials: true })
       .toPromise()
