@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SessionService} from '../../services/session-service/session.service'
 import {Member} from '../../classes/member';
+import {MemberService} from '../../services/member-service/member.service';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -12,7 +13,7 @@ export class SignInFormComponent implements OnInit {
   error: String;
   member: Member;
 
-  constructor(private sessionService: SessionService) {
+  constructor(private sessionService: SessionService, private memberService: MemberService) {
   }
 
   ngOnInit() {
@@ -21,7 +22,7 @@ export class SignInFormComponent implements OnInit {
 
   signIn(emailAddress: String, password: String): void {
     this.sessionService.create(emailAddress, password)
-      .then(() => null)
+      .then(() => this.memberService.setSignInFlg(true))
       .catch(e => this.handleError(e));
   }
 
