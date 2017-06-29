@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {SessionService} from '../../services/session-service/session.service';
 import {Router} from '@angular/router';
+import {MemberService} from "app/services/member-service/member.service";
+import {Member} from '../../classes/member';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +11,28 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private sessionService: SessionService, private router: Router) { }
+  signInFlg: boolean;
+
+  constructor(private sessionService: SessionService, private router: Router, private memberService: MemberService) { }
 
   ngOnInit() {
+    this.signInFlg = false;
+    this.setSignInFlg();
   }
 
   signOut(): void {
     this.sessionService.remove()
-      .then(() => this.router.navigate(['/sign-in']))
+      .then(() => {
+      this.signInFlg = false;
+      this.router.navigate(['/sign-in'])
+    })
+  }
+
+  private setSignInFlg() {
+    this.memberService.findCurrent()
+      .then(() => {
+      this.memberService.setSignInFlg(true);
+      this.memberService.signInFlg.subscribe(flg => this.signInFlg = flg);
+    })
   }
 }
