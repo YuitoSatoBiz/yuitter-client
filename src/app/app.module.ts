@@ -40,6 +40,7 @@ import {AccountSearchComponent} from './components/account-search/account-search
 import {AccountCardComponent} from './components/account-card/account-card.component';
 import {ImageUploadModule} from 'angular2-image-upload';
 import {CookieXSRFStrategy, HttpModule, XSRFStrategy} from '@angular/http';
+import {DataStoreService} from './services/data-store-service/data-store.service';
 
 
 export function cookieStrategy() {
@@ -95,7 +96,8 @@ export function cookieStrategy() {
     { provide: XSRFStrategy, useFactory: cookieStrategy},
     { provide: CookieOptions, useValue: {} },
     AccountFollowingService,
-    CookieService
+    CookieService,
+    DataStoreService
   ],
   entryComponents: [
     TweetUpdateFormComponent,
