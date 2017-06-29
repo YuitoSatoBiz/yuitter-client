@@ -16,8 +16,6 @@ export class MemberService {
   private assetsUrl = '/assets/public/';
   private membersUrl = '/api/members';
   private currentMemberUrl = '/api/members/current';
-  private _signInFlg: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  private _num: BehaviorSubject<number> = new BehaviorSubject(1);
 
   constructor(private http: Http, private router: Router, private sessionService: SessionService) {
   }
@@ -55,13 +53,5 @@ export class MemberService {
       }).catch(e =>
         this.router.navigate(['/sign-in'])
       )
-  }
-
-  get signInFlg() {
-    return this._signInFlg.asObservable();
-  }
-
-  setSignInFlg(bool: boolean) {
-    this._signInFlg.next(bool);
   }
 }
