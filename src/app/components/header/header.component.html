@@ -7,5 +7,10 @@
       <a md-button routerLink="/user-search">User Search</a>
       <a md-button (click)="signOut()">Sign Out</a>
     </div>
+    <div *ngIf="currentAccount" style="margin-left:550px;display:inline-block;">
+      <img *ngIf="currentAccount.avatar" src={{currentAccount.avatar}} class="avatar">
+      <img *ngIf="!currentAccount.avatar" src="/assets/img/default_egg.png" class="avatar">
+      {{currentAccount.accountName}}
+    </div>
   </div>
 </md-toolbar>

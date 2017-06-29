@@ -8,6 +8,7 @@ import {AccountService} from '../../services/account-service/account.service';
 import {Tweet} from '../../classes/tweet';
 import {AccountFormComponent} from '../account-form/account-form.component';
 import {MdDialog} from '@angular/material';
+import {DataStoreService} from '../../services/data-store-service/data-store.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -34,6 +35,7 @@ export class MemberDetailComponent implements OnInit {
               private tweetService: TweetService,
               private accountService: AccountService,
               private cookieService: CookieService,
+              private dataStoreService: DataStoreService,
               private dialog: MdDialog) {
   }
 
@@ -44,7 +46,8 @@ export class MemberDetailComponent implements OnInit {
   }
 
   onLinkClick($event: any): void {
-    this.currentAccount = this.accounts[$event.index];
+    this.dataStoreService.setCurrentAccount(this.accounts[$event.index]);
+    this.dataStoreService.currentAccount.subscribe(account => this.currentAccount = account);
     this.cookieService.remove('accountId');
     this.cookieService.put('accountId', this.currentAccount.accountId.toString());
     this.setTweets();
@@ -69,7 +72,8 @@ export class MemberDetailComponent implements OnInit {
         this.currentMember = member;
         this.accounts = this.currentMember.accounts;
         this.currentAccount = this.accounts[0];
-        this.currentAccountIds = this.currentMember.accounts.map(account => account.accountId);
+        this.dataStoreService.setCurrentAccount(this.accounts[0]);
+        this.dataStoreService.currentAccount.subscribe(account => this.currentAccount = account);
         this.cookieService.remove('accountId');
         this.cookieService.put('accountId', this.currentAccount.accountId.toString());
         this.setTweets();

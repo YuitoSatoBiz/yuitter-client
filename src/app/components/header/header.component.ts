@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {SessionService} from '../../services/session-service/session.service';
 import {Router} from '@angular/router';
-import {MemberService} from "app/services/member-service/member.service";
+import {MemberService} from 'app/services/member-service/member.service';
 import {Member} from '../../classes/member';
+import {Account} from '../../classes/account';
+
 import {DataStoreService} from '../../services/data-store-service/data-store.service';
 
 @Component({
@@ -13,6 +15,7 @@ import {DataStoreService} from '../../services/data-store-service/data-store.ser
 export class HeaderComponent implements OnInit {
 
   signInFlg: boolean;
+  currentAccount: Account;
 
   constructor(private dataStoreService: DataStoreService,
               private sessionService: SessionService,
@@ -29,14 +32,16 @@ export class HeaderComponent implements OnInit {
     this.sessionService.remove()
       .then(() => {
         this.signInFlg = false;
-        this.router.navigate(['/sign-in'])
+        this.router.navigate(['/sign-in']);
       })
   }
 
   private setSignInFlg() {
     this.memberService.findCurrent()
-      .then(() => {
+      .then(member => {
         this.dataStoreService.setSignInFlg(true);
+        this.dataStoreService.setCurrentAccount(member.accounts[0]);
+        this.dataStoreService.currentAccount.subscribe(account => this.currentAccount = account)
       }).catch(() =>
       this.dataStoreService.setSignInFlg(false));
   }
