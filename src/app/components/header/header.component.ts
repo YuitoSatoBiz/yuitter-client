@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SessionService} from '../../services/session-service/session.service';
 import {Router} from '@angular/router';
 import {MemberService} from "app/services/member-service/member.service";
@@ -13,26 +13,27 @@ export class HeaderComponent implements OnInit {
 
   signInFlg: boolean;
 
-  constructor(private sessionService: SessionService, private router: Router, private memberService: MemberService) { }
+  constructor(private sessionService: SessionService, private router: Router, private memberService: MemberService) {
+  }
 
   ngOnInit() {
-    this.signInFlg = false;
+    this.memberService.signInFlg.subscribe(flg => this.signInFlg = flg);
     this.setSignInFlg();
   }
 
   signOut(): void {
     this.sessionService.remove()
       .then(() => {
-      this.signInFlg = false;
-      this.router.navigate(['/sign-in'])
-    })
+        this.signInFlg = false;
+        this.router.navigate(['/sign-in'])
+      })
   }
 
   private setSignInFlg() {
     this.memberService.findCurrent()
       .then(() => {
-      this.memberService.setSignInFlg(true);
-      this.memberService.signInFlg.subscribe(flg => this.signInFlg = flg);
-    })
+        this.memberService.setSignInFlg(false);
+      }).catch(() =>
+      this.memberService.setSignInFlg(false));
   }
 }

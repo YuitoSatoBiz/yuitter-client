@@ -21,7 +21,7 @@ export class MemberService {
 
   constructor(private http: Http, private router: Router, private sessionService: SessionService) {
   }
-  
+
   create(accountName: String, emailAddress: String, password: String, avatar: string, backgroundImage: string): Promise<void> {
     let avatarPath: string;
     if (avatar != null) {
