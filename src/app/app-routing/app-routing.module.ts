@@ -8,8 +8,8 @@ import {MemberDetailComponent} from '../components/member-detail/member-detail.c
 import {AccountSearchComponent} from '../components/account-search/account-search.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/time-line', pathMatch: 'full' },
-  { path: 'time-line', component: TimeLineComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: TimeLineComponent },
   { path: 'sign-in', component: SignInFormComponent },
   { path: 'sign-up', component: SignUpFormComponent },
   { path: 'account/:accountId', component: AccountDetailComponent },
