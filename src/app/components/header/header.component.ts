@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
   private setSignInFlg() {
     this.memberService.findCurrent()
       .then(() => {
-        this.memberService.setSignInFlg(false);
+        this.memberService.setSignInFlg(true);
       }).catch(() =>
       this.memberService.setSignInFlg(false));
   }
