@@ -37,7 +37,7 @@ export class TweetListComponent implements OnInit {
     this.accountIds = this.accounts.map(a => a.accountId);
     this.options = [
       { accountId: this.account.accountId, name: this.account.accountName },
-      { accountId: -1, name: '全てのアカウントに送る' }
+      { accountId: -1, name: '全てのアカウントでつぶやく' }
     ];
     this.selectedValue = this.options[0].accountId;
   }

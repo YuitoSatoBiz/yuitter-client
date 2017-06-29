@@ -23,7 +23,7 @@ export class SessionService {
       )
       .toPromise()
       .then(response => {
-        this.router.navigate(['/time-line']);
+        this.router.navigate(['/home']);
       })
   }
 

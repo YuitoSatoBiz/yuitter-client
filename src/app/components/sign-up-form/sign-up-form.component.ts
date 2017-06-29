@@ -25,9 +25,16 @@ export class SignUpFormComponent implements OnInit {
   }
 
   signUp(accountName: String, emailAddress: String, password: String): void {
-    this.memberService.create(accountName, emailAddress, password, this.avatar, this.backgroundImage)
-      .then(() => null)
-      .catch(e => this.handleError(e))
+    accountName = accountName.replace(/\s+/g, '').replace(/\r?\n/g, '');
+    emailAddress = emailAddress.replace(/\s+/g, '').replace(/\r?\n/g, '');
+    password = password.replace(/\s+/g, '').replace(/\r?\n/g, '');
+    if (!accountName || !emailAddress || !password) {
+      this.error = '値が不正です。'
+    } else {
+      this.memberService.create(accountName, emailAddress, password, this.avatar, this.backgroundImage)
+        .then(() => null)
+        .catch(e => this.handleError(e))
+    }
   }
 
   avatarUploaded(event: any): void {

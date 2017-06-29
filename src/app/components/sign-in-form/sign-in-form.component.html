@@ -40,10 +40,11 @@
         </div>
       </div>
       <md-list-item>
-        <button (click)="signIn(emailAddress.value, password.value)" md-raised-button color="primary" [disabled]="!emailAddress.valid || !password.valid">
+        <button (click)="signIn(emailAddress.value, password.value)" md-raised-button color="accent" [disabled]="!emailAddress.valid || !password.valid">
           サインイン
         </button>
-        <a routerLink="/sign-up">or 新規登録</a>
+        or
+        <a md-raised-button color="default" routerLink="/sign-up">サインアップ画面へ</a>
       </md-list-item>
     </md-list>
   </div>

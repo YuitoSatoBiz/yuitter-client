@@ -24,9 +24,13 @@ export class TweetUpdateFormComponent implements OnInit {
   }
 
   onSubmit(tweetForm: FormGroup): void {
-    this.tweetService.update(this.tweet, tweetForm.value.tweetText)
-      .then(tweet => this.dialogRef.close(tweet))
-      .catch(e => this.handleError(e));
+    if (!(tweetForm.value.tweetText.replace(/\s+/g, '').replace(/\r?\n/g, ''))) {
+      this.error = '値が不正です。'
+    } else {
+      this.tweetService.update(this.tweet, tweetForm.value.tweetText)
+        .then(tweet => this.dialogRef.close(tweet))
+        .catch(e => this.handleError(e));
+    }
   }
 
   private handleError(error: any): Promise<any> {

@@ -1,18 +1,27 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" style="width:100%;">
-    <div class="mdl-grid">
-      <p *ngIf="error" style="color: red;">
-        {{error}}
-      </p>
-      <div class="form-group mdl-textfield mdl-js-textfield mdl-cell mdl-cell--8-col">
+  <div class="mdl-grid">
+    <div class="form-group mdl-textfield mdl-js-textfield mdl-cell mdl-cell--8-col">
       <textarea name="tweetText" ngModel class="form-control mdl-textfield__input" type="text" rows="5"
                 placeholder="どう書き換える？" maxlength="140" required #tweetText="ngModel">
       </textarea>
-        <label class="mdl-textfield__label"></label>
-      </div>
-      <div class=" mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
-        <button type="submit" md-raised-button color="primary" style="margin-bottom: 0">
-          更新する
-        </button>
-      </div>
+      <label class="mdl-textfield__label"></label>
     </div>
+    <div class=" mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
+      <button type="submit" md-raised-button color="primary" style="margin-bottom: 0" [disabled]="!tweetText.valid">
+        更新する
+      </button>
+    </div>
+  </div>
+  <div *ngIf="error" class="alert" style="padding:0 14px">
+    {{error}}
+  </div>
+  <div *ngIf="tweetText.errors && (tweetText.dirty || tweetText.touched)"
+       class="alert" style="padding:0 16px">
+    <div [hidden]="!tweetText.errors.required">
+      ツイートを入力してください。
+    </div>
+    <div [hidden]="!tweetText.errors.maxlength">
+      140文字以上のツイートは送信できません。
+    </div>
+  </div>
 </form>

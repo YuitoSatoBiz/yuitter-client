@@ -17,10 +17,10 @@
           <div *ngIf="accountName.errors && (accountName.dirty || accountName.touched)"
                class="alert">
             <div [hidden]="!accountName.errors.required">
-              メールアドレスを入力してください。
+              アカウント名を入力してください。
             </div>
             <div [hidden]="!accountName.errors.maxlength">
-              メールアドレスは50文字以下です。
+              アカウント名は50文字以下です。
             </div>
           </div>
         </md-list-item>
@@ -91,10 +91,11 @@
           (click)="signUp(accountName.value, emailAddress.value, password.value)"
           [disabled]="!accountName.valid || !emailAddress.valid || !password.valid"
           md-raised-button
-          color="primary">
+          color="accent">
           サインアップ
         </button>
-        <a routerLink="/sign-in">or サインイン</a>
+        or
+        <a md-raised-button color="default" routerLink="/sign-in">サインイン画面へ</a>
       </md-list-item>
     </md-list>
   </div>

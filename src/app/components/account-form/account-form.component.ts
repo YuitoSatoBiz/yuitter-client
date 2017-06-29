@@ -21,9 +21,14 @@ export class AccountFormComponent implements OnInit {
   }
 
   onSubmit(accountForm: FormGroup) {
-    this.accountService.create(accountForm.value.accountName, this.avatar, this.backgroundImage)
-      .then(account => this.dialogRef.close(account))
-      .catch(e => this.handleError(e));
+    const accountName = accountForm.value.accountName.replace(/\s+/g, '').replace(/\r?\n/g, '');
+    if (!accountName) {
+      this.error = '値が不正です。'
+    } else {
+      this.accountService.create(accountForm.value.accountName, this.avatar, this.backgroundImage)
+        .then(account => this.dialogRef.close(account))
+        .catch(e => this.handleError(e));
+    }
   }
 
   avatarUploaded(event: any): void {

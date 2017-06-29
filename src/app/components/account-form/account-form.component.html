@@ -8,11 +8,22 @@
         {{error}}
       </p>
     </md-list>
+    <md-list>
+      <div *ngIf="accountName.errors && (accountName.dirty || accountName.touched)"
+           class="alert">
+        <div [hidden]="!accountName.errors.required">
+          アカウント名を入力してください。
+        </div>
+        <div [hidden]="!accountName.errors.maxlength">
+          アカウント名は50文字以下です。
+        </div>
+      </div>
+    </md-list>
     <md-list class="form-group">
       <div>
         <md-list-item>
           <md-input-container>
-            <input name="accountName" class="form-control" ngModel mdInput placeholder="Nickname" #accountName="ngModel"/>
+            <input name="accountName" class="form-control" ngModel mdInput placeholder="Nickname" #accountName="ngModel" required maxlength="50"/>
           </md-input-container>
         </md-list-item>
       </div>
@@ -45,7 +56,7 @@
         </md-list-item>
       </div>
       <md-list-item>
-        <button type="submit" md-raised-button color="primary">
+        <button type="submit" md-raised-button color="primary" [disabled]="!accountName.valid">
           追加
         </button>
       </md-list-item>
