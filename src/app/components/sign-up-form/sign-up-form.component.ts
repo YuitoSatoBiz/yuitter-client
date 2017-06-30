@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MemberService} from '../../services/member-service/member.service'
 import {Member} from '../../classes/member';
 import {Account} from '../../classes/account';
+import {DataStoreService} from '../../services/data-store-service/data-store.service';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -16,7 +17,7 @@ export class SignUpFormComponent implements OnInit {
   member: Member;
   account: Account;
 
-  constructor(private memberService: MemberService) {
+  constructor(private memberService: MemberService, private dataStoreService: DataStoreService) {
   }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class SignUpFormComponent implements OnInit {
       this.error = '値が不正です。'
     } else {
       this.memberService.create(accountName, emailAddress, password, this.avatar, this.backgroundImage)
-        .then(() => null)
+        .then(() => this.dataStoreService.setSignInFlg(true))
         .catch(e => this.handleError(e))
     }
   }

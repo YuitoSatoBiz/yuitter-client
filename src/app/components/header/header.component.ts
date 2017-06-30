@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
     this.sessionService.remove()
       .then(() => {
         this.signInFlg = false;
+        this.dataStoreService.setCurrentAccount(null);
         this.router.navigate(['/sign-in']);
       })
   }

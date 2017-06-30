@@ -23,7 +23,9 @@ export class SignInFormComponent implements OnInit {
 
   signIn(emailAddress: String, password: String): void {
     this.sessionService.create(emailAddress, password)
-      .then(() => this.dataStoreService.setSignInFlg(true))
+      .then(() => {
+        this.dataStoreService.setSignInFlg(true);
+      })
       .catch(e => this.handleError(e));
   }
 

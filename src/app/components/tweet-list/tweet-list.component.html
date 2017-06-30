@@ -4,22 +4,25 @@
       <form #f="ngForm" ngForm (ngSubmit)="onSubmit(f)" style="width: 100%;">
         <div class="mdl-grid">
           <div class="form-group mdl-textfield mdl-js-textfield mdl-cell mdl-cell--8-col">
-            <textarea name="tweetText" [(ngModel)]="tweet.tweetText" class="form-control mdl-textfield__input" type="text" rows="5"
+            <textarea name="tweetText" [(ngModel)]="tweet.tweetText" class="form-control mdl-textfield__input"
+                      type="text" rows="5"
                       placeholder="今何してる？" maxlength="140" required #tweetText="ngModel"></textarea>
             <label class="mdl-textfield__label"></label>
             <div class="alert" *ngIf="error">
               {{error}}
             </div>
-            <div *ngIf="tweetText.errors && (tweetText.dirty || tweetText.touched)"
-                 class="alert">
-              <div [hidden]="!tweetText.errors.required">
-                ツイートを入力してください。
-              </div>
-              <div [hidden]="!tweetText.errors.maxlength">
-                140文字以上のツイートは送信できません。
-              </div>
-              <div [hidden]="!accountId.errors.required">
-                ツイートするアカウントを選んでください。
+            <div *ngIf="tweetText">
+              <div *ngIf="(tweetText?.dirty || tweetText?.touched) && tweetText?.errors"
+                   class="alert">
+                <div [hidden]="!tweetText?.errors.required">
+                  ツイートを入力してください。
+                </div>
+                <div [hidden]="!tweetText?.errors.maxlength">
+                  140文字以上のツイートは送信できません。
+                </div>
+                <div [hidden]="!accountId?.errors.required">
+                  ツイートするアカウントを選んでください。
+                </div>
               </div>
             </div>
           </div>
@@ -29,7 +32,8 @@
                 {{option.name}}
               </md-option>
             </md-select>
-            <button type="submit" md-raised-button color="accent" style="margin-top:15px;" [disabled]="!tweetText.valid">
+            <button type="submit" md-raised-button color="accent" style="margin-top:15px;"
+                    [disabled]="!tweetText.valid">
               ツイート
             </button>
           </div>
@@ -38,6 +42,7 @@
     </md-card-header>
   </md-card>
   <md-list-item *ngFor="let tweet of tweets">
-    <app-tweet-card [currentAccount]="currentAccount" [currentAccountIds]="currentAccountIds" [tweet]="tweet"></app-tweet-card>
+    <app-tweet-card [currentAccount]="currentAccount" [currentAccountIds]="currentAccountIds"
+                    [tweet]="tweet"></app-tweet-card>
   </md-list-item>
 </div>
